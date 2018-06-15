@@ -51,7 +51,7 @@
 									placeholder="请输入验证码" class="form-control input-lg"/>
 								<br>
 								<div style="text-align: center;">
-									<img id="captchaImage" src="<%= basePath %>captcha"/>
+									<img id="captchaImage" src="<%= basePath %>/login/captcha"/>
 								</div>
 							</div>
 							

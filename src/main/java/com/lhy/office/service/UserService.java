@@ -1,11 +1,14 @@
 package com.lhy.office.service;
 
-import java.util.List;
-
 import com.lhy.office.entity.User;
 
 public interface UserService {
 
-	public List<User> users(int userId);
+	/**
+	 * 通过用户名查询客户
+	 * @param username
+	 * @return
+	 */
+	public User getUserByUsername(String username);
 }
 

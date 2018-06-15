@@ -19,8 +19,8 @@
 		<result column="role_id" jdbcType="INTEGER" property="roleId" />
 		<result column="userstate" jdbcType="INTEGER" property="userState" />
 	</resultMap>
-	<select id="users" parameterType="Integer" resultMap="CascadeResultMap" >
-		select * from tb_user where userId=#{userId}
+	<select id="getUserByUsername" parameterType="String" resultMap="CascadeResultMap" >
+		select * from tb_user where loginName=#{loginName}
 	</select>
 
 </mapper>

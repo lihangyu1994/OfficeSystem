@@ -32,7 +32,7 @@
 						<form action="<%= basePath %>/login" method="post" 
 								class="panel-body wrapper-lg" data-validate="parsley">
 							<div class="form-group">
-								<label class="control-label">用户名/工号</label>
+								<label class="control-label">用户名/工111</label>
 								<input name="loginName" type="text" placeholder="请输入用户名" 
 									class="form-control input-lg" data-required="true"
 									data-rangelength="[4,30]" data-notblank="true">

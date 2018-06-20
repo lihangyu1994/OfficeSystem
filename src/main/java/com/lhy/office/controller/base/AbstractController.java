@@ -22,8 +22,8 @@ public abstract class AbstractController {
 	}
 	
 	/**往session中注入参数*/
-	protected void setSessionParam(String key,String value) {
-		getSession().setAttribute(key, value);
+	protected void setSessionParam(String key,Object param) {
+		getSession().setAttribute(key,param);
 	}
 	
 	/**获取当前用户*/

@@ -48,16 +48,16 @@ public class LoginController extends AbstractController {
 			map.put("result", false);
 		}
 		if(!StringUtils.hasText(request.getPassword())) {
-			map.put("msg", "登录名不能为空");
+			map.put("msg", "密码不能为空");
 			map.put("result", false);
 		}
 		if(!StringUtils.hasText(request.getCode())) {
-			map.put("msg", "登录名不能为空");
+			map.put("msg", "验证码不能为空");
 			map.put("result", false);
 		}
-		/*if(request.getCode().equalsIgnoreCase((String) getSession().getAttribute("code"))) {
+		if(!request.getCode().equalsIgnoreCase((String) getSession().getAttribute("code"))) {
 			return "验证码不正确";
-		}*/
+		}
 		User userModel = userService.getUserByUsername(request.getLoginName());
 		if(userModel==null) {
 			map.put("msg", "客户不存在");
@@ -70,7 +70,7 @@ public class LoginController extends AbstractController {
 			map.put("result", false);
 		}else {
 			setSessionParam(Constants.SESSION_CUSTOMER_INFO, userModel);
-			return "forward:index";
+			return "forward:/toIndex";
 		}
 		return "login";
 	}

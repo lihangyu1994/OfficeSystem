@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import com.lhy.office.constants.Constants;
 import com.lhy.office.entity.User;
+import com.lhy.office.filter.SecurityContextHolder;
 
 /**
  * 业务通用
@@ -12,13 +13,11 @@ import com.lhy.office.entity.User;
  */
 public abstract class AbstractController {
 	
-	private static final ThreadLocal<HttpSession> SESSION_HOLDER = new ThreadLocal<>();
-
 	/**
 	 * @return 当前session
 	 */
 	protected static final HttpSession getSession() {
-		return SESSION_HOLDER.get();
+		return SecurityContextHolder.getSession();
 	}
 	
 	/**往session中注入参数*/

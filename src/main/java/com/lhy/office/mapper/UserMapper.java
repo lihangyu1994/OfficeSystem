@@ -9,5 +9,11 @@ public interface UserMapper {
 	 * @return
 	 */
 	public User getUserByUsername(String username);
+	/**
+	 * 查询客户
+	 * @param user
+	 * @return
+	 */
+	public User loginValidate(User user);
 }
 

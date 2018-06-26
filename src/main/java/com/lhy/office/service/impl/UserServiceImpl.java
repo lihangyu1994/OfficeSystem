@@ -16,4 +16,11 @@ public class UserServiceImpl implements UserService{
 		return userMapper.getUserByUsername(username);
 	}
 
+	@Override
+	public User loginValidate(String loginName) {
+		User user = new User();
+		user.setLoginName(loginName);
+		return userMapper.loginValidate(user);
+	}
+	
 }

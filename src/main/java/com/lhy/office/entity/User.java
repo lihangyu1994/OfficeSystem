@@ -22,6 +22,10 @@ public class User {
 
 	private int userState;
 	
+	private Institution institution;
+	
+	private Role role;
+	
 
 	public int getUserId() {
 		return userId;
@@ -101,6 +105,22 @@ public class User {
 
 	public void setUserTrueName(String userTrueName) {
 		this.userTrueName = userTrueName;
+	}
+
+	public Institution getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(Institution institution) {
+		this.institution = institution;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	

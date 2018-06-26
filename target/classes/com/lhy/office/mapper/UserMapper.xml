@@ -5,6 +5,7 @@
 <!-- namespace:必须与对应的接口全类名一致，id:必须与对应接口的某个方法名一致 -->
 
 <mapper namespace="com.lhy.office.mapper.UserMapper">
+
 	<!-- 级联结果集 -->
 	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.User">
 		<!-- 表中原有基本类 -->
@@ -17,10 +18,49 @@
 		<result column="email" jdbcType="VARCHAR" property="email" />
 		<result column="inst_id" jdbcType="INTEGER" property="instId" />
 		<result column="role_id" jdbcType="INTEGER" property="roleId" />
-		<result column="userstate" jdbcType="INTEGER" property="userState" />
+		<result column="userstate" jdbcType="INTEGER" property="userState"/>
+		<!-- 级联机构 -->
+		<association property="institution" javaType="com.lhy.office.entity.Institution">
+			<id column="instId" jdbcType="INTEGER" property="instId"></id>
+			<result column="instName" jdbcType="VARCHAR" property="instName"></result>
+		</association>
+		<!-- 级联角色 -->
+		<association property="role" javaType="com.lhy.office.entity.Role">
+			<id column="roleId" jdbcType="INTEGER" property="roleId"/>
+			<result column="roleName" jdbcType="VARCHAR" property="roleName"/>
+		</association>		
 	</resultMap>
+	<sql id="cascadeSql">
+		SELECT 
+			user.userid,
+			user.loginname,
+			user.password,
+			user.usertruename,
+			user.job,
+			user.phone,
+			user.email,
+			user.inst_id,
+			user.role_id,
+			user.userstate,
+			inst.instid,
+			inst.instname,
+			role.rolename,
+			role.roleid
+		FROM 
+		tb_user user
+		LEFT JOIN
+		tb_role role ON user.role_id =  role.roleid
+		LEFT JOIN
+		tb_institution inst ON user.inst_id = instid 
+	</sql>
 	<select id="getUserByUsername" parameterType="String" resultMap="CascadeResultMap" >
 		select * from tb_user where loginName=#{loginName}
+	</select>
+	
+	<select id="loginValidate" parameterType="com.lhy.office.entity.User" resultMap="CascadeResultMap" >
+		<!--引入级联sql  -->
+		<include refid="cascadeSql"></include>
+			where loginName=#{loginName}
 	</select>
 
 </mapper>

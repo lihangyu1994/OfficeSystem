@@ -18,6 +18,7 @@ import com.lhy.office.constants.Constants;
 import com.lhy.office.controller.base.AbstractController;
 import com.lhy.office.dto.UserReqeust;
 import com.lhy.office.entity.User;
+import com.lhy.office.service.RoleService;
 import com.lhy.office.service.UserService;
 import com.lhy.office.util.CodeUtil;
 import com.lhy.office.util.MD5Helper;
@@ -27,6 +28,9 @@ public class LoginController extends AbstractController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 
 	/**
 	 * 验证码
@@ -41,34 +45,42 @@ public class LoginController extends AbstractController {
 		CodeUtil.drawCode(request, response);
 	}
 
+	/**
+	 * 客户登录
+	 * @param map
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/login")
-	public String users(Map<String, Object> map,UserReqeust request) {
-		if(!StringUtils.hasText(request.getLoginName())) {
+	public String users(Map<String, Object> map, UserReqeust request) {
+		if (!StringUtils.hasText(request.getLoginName())) {
 			map.put("msg", "登录名不能为空");
 			map.put("result", false);
 		}
-		if(!StringUtils.hasText(request.getPassword())) {
+		if (!StringUtils.hasText(request.getPassword())) {
 			map.put("msg", "密码不能为空");
 			map.put("result", false);
 		}
-		if(!StringUtils.hasText(request.getCode())) {
+		if (!StringUtils.hasText(request.getCode())) {
 			map.put("msg", "验证码不能为空");
 			map.put("result", false);
 		}
-		if(!request.getCode().equalsIgnoreCase((String) getSession().getAttribute("code"))) {
-			return "验证码不正确";
+		if (!request.getCode().equalsIgnoreCase((String) getSession().getAttribute("code"))) {
+			map.put("msg", "验证码不正确");
+			map.put("result", false);
 		}
-		User userModel = userService.getUserByUsername(request.getLoginName());
-		if(userModel==null) {
+		//User userModel = userService.getUserByUsername(request.getLoginName());
+		User userModel = userService.loginValidate(request.getLoginName());
+		if (userModel == null) {
 			map.put("msg", "客户不存在");
 			map.put("result", false);
 			return "login";
 		}
 		MD5Helper md5Helper = new MD5Helper();
-		if(!md5Helper.getTwiceMD5ofString(request.getPassword()).equals(userModel.getPassword())) {
+		if (!md5Helper.getTwiceMD5ofString(request.getPassword()).equals(userModel.getPassword())) {
 			map.put("msg", "密码不正确");
 			map.put("result", false);
-		}else {
+		} else {
 			setSessionParam(Constants.SESSION_CUSTOMER_INFO, userModel);
 			return "forward:/toIndex";
 		}
@@ -79,9 +91,13 @@ public class LoginController extends AbstractController {
 	public String toLogin() {
 		return "login";
 	}
+
 	@RequestMapping("/toIndex")
 	public String toIndex() {
 		User user = getUser();
+		int roleId = user.getRoleId();
+		roleService.queryFunctionByRoleId(roleId);
+		// 用户的角色信息
 		return "index";
 	}
 }

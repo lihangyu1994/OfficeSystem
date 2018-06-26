@@ -10,5 +10,11 @@ public interface UserService {
 	 * @return
 	 */
 	public User getUserByUsername(String username);
+	/**
+	 * 查询客户信息
+	 * @param user
+	 * @return
+	 */
+	public User loginValidate(String loginName);
 }
 

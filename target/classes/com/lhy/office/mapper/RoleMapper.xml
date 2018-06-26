@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lhy.office.mapper.RoleMapper">
+	<!-- 角色信息结果集(含级联数据)-->
+	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.Role" >
+		<id column="roleid" jdbcType="INTEGER" property="roleid"/>
+		<result column="rolename" jdbcType="VARCHAR" property="roleName"/>
+		<result column="roledesc" jdbcType="VARCHAR" property="roleDesc"/>
+		<result column="rolestate" jdbcType="INTEGER" property="roleState"/>
+	<!-- 设置角色和功能的多对多关联关系 -->
+		<collection property="functionList" ofType="com.lhy.office.entity.Function">
+			<id column="funid" property="funId"></id>
+			<result column="funname" property="funName"/>
+			<result column="funurl" property="funUrl"/>
+			<result column="funpid" property="funPid"/>
+			<result column="funstate" property="funState"/>
+		</collection>	
+	</resultMap>
+
+	<!-- 级联查询的基本语句 -->
+	<sql id="cascadeSelect">
+		select
+			role.roleid,
+			role.rolename,
+			role.roledesc,
+			role.rolestate,
+			fun.funid,
+			fun.funname,
+			fun.funpid,
+			fun.funurl,
+			fun.funstate
+		from tb_role role
+		left join
+			tb_roleright on tb_roleright.role_id = role.roleid
+		left join 
+			tb_function fun tb_roleright.fun_id = fun.funid
+	</sql>
+	<!-- 按主键查询角色信息(级联) -->
+	<select id="queryFunctionByRoleId" parameterType="Integer" resultMap="CascadeResultMap">
+		<!-- 引入级联查询sql -->
+		<include refid="cascadeSelect"></include>
+		<!-- 加上查询条件 -->
+		where roleId=#{roleId,jdbcType=INTEGER}
+		order by
+		fun.funid asc
+	</select>
+
+</mapper>
+

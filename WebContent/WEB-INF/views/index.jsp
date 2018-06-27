@@ -44,7 +44,7 @@
 							<span class="thumb-sm avatar pull-left">
 								<img src="images/avatar.jpg">
 							</span>
-							${sessionScope.user.usertruename}（${sessionScope.user.role.rolename}）
+							${sessionScope.user.userTrueName}（${sessionScope.user.role.roleName}）
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInRight">
@@ -93,37 +93,37 @@
 											<!-- 加载功能列表 -->
 											<c:forEach items="${functionList}" var="parent">
 												<!-- 如果父功能被禁用，则下方的子功能无论是否被禁用都不显示 -->
-												<c:if test="${parent.funstate == 1 && parent.funpid == -1}">
+												<c:if test="${parent.funState == 1 && parent.funPid == -1}">
 													<!-- 父功能（一级菜单） -->
 													<li>
 														<!-- 父菜单：取消默认的点击事件行为 -->
 														<a href="#" onclick="return false;"> 
 															<i class="fa fa-angle-right icon"> 
 																<c:choose>
-																	<c:when test="${parent.funid % 5 == 1}"><b class="bg-primary"></b></c:when>
-																	<c:when test="${parent.funid % 5 == 2}"><b class="bg-warning"></b></c:when>
-																	<c:when test="${parent.funid % 5 == 3}"><b class="bg-success"></b></c:when>
-																	<c:when test="${parent.funid % 5 == 4}"><b class="bg-dark"></b></c:when>
-																	<c:when test="${parent.funid % 5 == 0}"><b class="bg-info"></b></c:when>
+																	<c:when test="${parent.funId % 5 == 1}"><b class="bg-primary"></b></c:when>
+																	<c:when test="${parent.funId % 5 == 2}"><b class="bg-warning"></b></c:when>
+																	<c:when test="${parent.funId % 5 == 3}"><b class="bg-success"></b></c:when>
+																	<c:when test="${parent.funId % 5 == 4}"><b class="bg-dark"></b></c:when>
+																	<c:when test="${parent.funId % 5 == 0}"><b class="bg-info"></b></c:when>
 																</c:choose>
 															</i> 
 															<span class="pull-right"> 
 																<i class="fa fa-angle-down text"></i> 
 																<i class="fa fa-angle-up text-active"></i> 
 															</span> 
-															<span>${parent.funname}</span> 
+															<span>${parent.funName}</span> 
 														</a>
 														
 														<!-- 子菜单 -->
 														<ul class="nav lt">
 															<c:forEach items="${functionList}" var="child">
 																<!-- 若某个父功能下面的子功能被禁用，则不加载此功能 -->
-																<c:if test="${child.funstate == 1 && child.funpid == parent.funid}">
+																<c:if test="${child.funState == 1 && child.funPid == parent.funId}">
 																	<!-- 加载子菜单 -->
 																	<li>
-																		<a href="<%= basePath %>${child.funurl}" target="main"> 
+																		<a href="<%= basePath %>${child.funUrl}" target="main"> 
 																			<i class="fa fa-angle-right"></i> 
-																			<span>${child.funname}</span> 
+																			<span>${child.funName}</span> 
 																		</a>
 																	</li>
 																</c:if>

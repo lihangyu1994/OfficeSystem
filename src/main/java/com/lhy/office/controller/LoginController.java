@@ -1,11 +1,13 @@
 package com.lhy.office.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lhy.office.constants.Constants;
 import com.lhy.office.controller.base.AbstractController;
 import com.lhy.office.dto.UserReqeust;
+import com.lhy.office.entity.Function;
 import com.lhy.office.entity.User;
 import com.lhy.office.service.RoleService;
 import com.lhy.office.service.UserService;
@@ -31,6 +34,9 @@ public class LoginController extends AbstractController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	/*@Autowired
+	private ArticleService articleService;*/
 
 	/**
 	 * 验证码
@@ -93,11 +99,50 @@ public class LoginController extends AbstractController {
 	}
 
 	@RequestMapping("/toIndex")
-	public String toIndex() {
-		User user = getUser();
-		int roleId = user.getRoleId();
-		roleService.queryFunctionByRoleId(roleId);
+	public String toIndex(Map<String,Object> map) {
+		int roleId = getUser().getRoleId();
+		List<Function> functions = roleService.queryFunctionByRoleId(roleId).getFunctionList();
+		map.put("functionList", functions);
 		// 用户的角色信息
 		return "index";
+	}
+	
+	/**
+	 * 访问欢迎页
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/toWelcome")
+	public String toWelcome(Map<String, Object> map, HttpSession session) {
+
+		//1.从Session中取出用户信息，并得到用户id和角色id
+		Integer userId = getUser().getUserId();
+		Integer roleid = getUser().getRoleId();
+
+		//2.找出要统计的4个数字
+
+		//2.1 找出待处理公文数量
+/*		Long dealcount = null;
+		if (roleid == 1 || roleid == 2) {
+			dealcount = articleService.getDealCount(userId);
+		}
+
+		//2.2 找出审核驳回公文数量
+		Long failcount = articleService.getFailCount(userId);
+
+		//2.3 找出待接收公文数量
+		Long receivecount = articleService.getReceivedCount(userId);
+
+		//2.4 找出等待审核通过公文数量
+		Long waitcount = articleService.getWaitCount(userId);*/
+
+		//3 保存查询结果
+		map.put("dealcount", 1);
+		map.put("failcount", 2);
+		map.put("receivecount", 3);
+		map.put("waitcount",4);
+
+		//4.返回首页
+		return "home";
 	}
 }

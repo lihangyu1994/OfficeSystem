@@ -30,7 +30,7 @@
 		<div class="hero-unit well"
 			style="background: url(<%=basePath%>images/bg.jpg);">
 			<h1 style="color: #FFFFFF;">
-				${sessionScope.user.usertruename}，您好！欢迎使用公文管理系统！</h1>
+				${sessionScope.user.userTrueName}，您好！欢迎使用公文管理系统！</h1>
 			<h3 style="color: #FFFFFF;">本系统旨在帮助您提高工作效率，更从容地应付公文管理工作中的问题！</h3>
 			<p>
 				<a class="btn btn-primary btn-large"

@@ -5,7 +5,7 @@
 <mapper namespace="com.lhy.office.mapper.RoleMapper">
 	<!-- 角色信息结果集(含级联数据)-->
 	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.Role" >
-		<id column="roleid" jdbcType="INTEGER" property="roleid"/>
+		<id column="roleid" jdbcType="INTEGER" property="roleId"/>
 		<result column="rolename" jdbcType="VARCHAR" property="roleName"/>
 		<result column="roledesc" jdbcType="VARCHAR" property="roleDesc"/>
 		<result column="rolestate" jdbcType="INTEGER" property="roleState"/>
@@ -35,14 +35,14 @@
 		left join
 			tb_roleright on tb_roleright.role_id = role.roleid
 		left join 
-			tb_function fun tb_roleright.fun_id = fun.funid
+			tb_function fun on tb_roleright.fun_id = fun.funid
 	</sql>
 	<!-- 按主键查询角色信息(级联) -->
 	<select id="queryFunctionByRoleId" parameterType="Integer" resultMap="CascadeResultMap">
 		<!-- 引入级联查询sql -->
 		<include refid="cascadeSelect"></include>
 		<!-- 加上查询条件 -->
-		where roleId=#{roleId,jdbcType=INTEGER}
+		where role.roleid=#{roleId,jdbcType=INTEGER}
 		order by
 		fun.funid asc
 	</select>

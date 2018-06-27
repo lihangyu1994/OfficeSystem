@@ -146,4 +146,17 @@ public class LoginController extends AbstractController {
 		//4.返回首页
 		return "home";
 	}
+	/**
+	 * 客户注销
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		// 移除user
+		getSession().removeAttribute(Constants.SESSION_CUSTOMER_INFO);
+		// 注销session
+		getSession().invalidate();
+		
+		return "login";
+	}
 }

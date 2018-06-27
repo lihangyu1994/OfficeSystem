@@ -75,8 +75,9 @@ public class LoginController extends AbstractController {
 			map.put("msg", "验证码不正确");
 			map.put("result", false);
 		}
-		//User userModel = userService.getUserByUsername(request.getLoginName());
-		User userModel = userService.loginValidate(request.getLoginName());
+		User user = new User();
+		user.setLoginName(request.getLoginName());
+		User userModel = userService.getUserByKeyWord(user);
 		if (userModel == null) {
 			map.put("msg", "客户不存在");
 			map.put("result", false);

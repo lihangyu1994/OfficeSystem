@@ -17,10 +17,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User loginValidate(String loginName) {
-		User user = new User();
-		user.setLoginName(loginName);
-		return userMapper.loginValidate(user);
+	public User getUserByKeyWord(User user) {
+		return userMapper.getUserByKeyWord(user);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		userMapper.updateUser(user);
 	}
 	
 }

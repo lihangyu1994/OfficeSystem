@@ -15,6 +15,11 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public User loginValidate(String loginName);
+	public User getUserByKeyWord(User user);
+	/**
+	 * 修改客户信息
+	 * @param user
+	 */
+	public void updateUser(User user);
 }
 

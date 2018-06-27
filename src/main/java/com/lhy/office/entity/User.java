@@ -2,7 +2,7 @@ package com.lhy.office.entity;
 
 public class User {
 
-	private int userId;
+	private Integer userId;
 
 	private String loginName;
 
@@ -16,22 +16,21 @@ public class User {
 
 	private String email;
 
-	private int instId;
+	private Integer instId;
 
-	private int roleId;
+	private Integer roleId;
 
-	private int userState;
+	private Integer userState;
 	
 	private Institution institution;
 	
 	private Role role;
-	
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -49,6 +48,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUserTrueName() {
+		return userTrueName;
+	}
+
+	public void setUserTrueName(String userTrueName) {
+		this.userTrueName = userTrueName;
 	}
 
 	public String getJob() {
@@ -75,36 +82,28 @@ public class User {
 		this.email = email;
 	}
 
-	public int getInstId() {
+	public Integer getInstId() {
 		return instId;
 	}
 
-	public void setInstId(int instId) {
+	public void setInstId(Integer instId) {
 		this.instId = instId;
 	}
 
-	public int getRoleId() {
+	public Integer getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 
-	public int getUserState() {
+	public Integer getUserState() {
 		return userState;
 	}
 
-	public void setUserState(int userState) {
+	public void setUserState(Integer userState) {
 		this.userState = userState;
-	}
-
-	public String getUserTrueName() {
-		return userTrueName;
-	}
-
-	public void setUserTrueName(String userTrueName) {
-		this.userTrueName = userTrueName;
 	}
 
 	public Institution getInstitution() {
@@ -122,6 +121,7 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
 
 	
 

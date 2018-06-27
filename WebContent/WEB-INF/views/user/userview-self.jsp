@@ -49,8 +49,8 @@
                                 	<a href="<%= basePath %>toWelcome" class="btn btn-default btn-sm">
                                 		<i class="fa  fa-chevron-left"></i>返回首页
                                 	</a>
-                                	<a href="<%= basePath %>user/toModifySelf" class="btn btn-warning btn-sm">修改个人信息</a>
-                                	<a href="<%= basePath %>user/toPasswordModify" class="btn btn-danger btn-sm">修改我的密码</a>
+                                	<a href="<%= basePath %>User/toModifySelf" class="btn btn-warning btn-sm">修改个人信息</a>
+                                	<a href="<%= basePath %>User/toPasswordModify" class="btn btn-danger btn-sm">修改我的密码</a>
 								</div>
 								<br />
 								

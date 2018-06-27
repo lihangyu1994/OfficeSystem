@@ -57,10 +57,51 @@
 		select * from tb_user where loginName=#{loginName}
 	</select>
 	
-	<select id="loginValidate" parameterType="com.lhy.office.entity.User" resultMap="CascadeResultMap" >
+	<select id="getUserByKeyWord" parameterType="com.lhy.office.entity.User" resultMap="CascadeResultMap" >
 		<!--引入级联sql  -->
 		<include refid="cascadeSql"></include>
-			where loginName=#{loginName}
+			where 1=1
+		<if test="loginName!=null">
+			And loginName=#{loginName}
+		</if>
+		<if test="userId!=null">
+			And userid=#{userId}
+		</if>
+			
 	</select>
+	
+	<update id="updateUser" parameterType="com.lhy.office.entity.User">
+		update tb_user
+		<set>
+ 			<if test="loginName!=null">
+				loginname=#{loginName},
+			</if>
+			<if test="password!=null">
+				password=#{password},			
+			</if>
+			<if test="userTrueName!=null">
+				usertruename=#{userTrueName},
+			</if>
+			<if test="job!=null">
+				job=#{job},
+			</if>
+			<if test="phone!=null">
+				phone=#{phone},
+			</if>
+			<if test="email!=null">
+				email=#{email},
+			</if>
+			<if test="instId != null">
+				inst_id = #{instId},
+			</if>
+			<if test="roleId != null">
+				role_id = #{roleId},
+			</if>
+			<if test="userState != null">
+				userstate = #{userState}
+			</if> 
+		</set>
+		where userid=#{userId}
+	</update>
 
 </mapper>

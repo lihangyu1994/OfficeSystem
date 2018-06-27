@@ -14,6 +14,11 @@ public interface UserMapper {
 	 * @param user
 	 * @return
 	 */
-	public User loginValidate(User user);
+	public User getUserByKeyWord(User user);
+	/**
+	 * 修改客户信息
+	 * @param user
+	 */
+	public void updateUser(User user);
 }
 

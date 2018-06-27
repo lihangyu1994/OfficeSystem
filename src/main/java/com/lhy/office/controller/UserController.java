@@ -27,4 +27,9 @@ public class UserController {
 	public String toLogin() {
 		return "login";
 	}*/
+	
+	@RequestMapping("/viewSelf")
+	public String viewSelf() {
+		return "/user/userview-self";
+	}
 }

@@ -50,13 +50,13 @@
 						<ul class="dropdown-menu animated fadeInRight">
 							<span class="arrow top"></span>
 							<li>
-								<a href="<%= basePath %>user/viewSelf" target="main">查看个人信息</a>
+								<a href="<%= basePath %>User/viewSelf" target="main">查看个人信息</a>
 							</li>
 							<li>
-								<a href="<%= basePath %>user/toModifySelf" target="main">修改个人信息</a>
+								<a href="<%= basePath %>User/toModifySelf" target="main">修改个人信息</a>
 							</li>
 							<li>
-								<a href="<%= basePath %>user/toPasswordModify" target="main">修改密码</a>
+								<a href="<%= basePath %>User/toPasswordModify" target="main">修改密码</a>
 							</li>
 							<li class="divider"></li>
 							<li>

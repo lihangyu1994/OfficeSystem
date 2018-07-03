@@ -24,6 +24,7 @@
 	
 	<!-- 静态资源处理 -->
 	<mvc:default-servlet-handler />
+
 		
 	<!-- 定义跳转的文件前后缀，视图模式配置 -->
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -50,7 +51,7 @@
  			<mvc:exclude-mapping path="/captcha" />
 			<mvc:exclude-mapping path="/login" />
 			<mvc:exclude-mapping path="/login.jsp" /> 
-			<bean class="com.lhy.office.controller.UserController" />
+			<bean class="com.lhy.office.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors> 
 

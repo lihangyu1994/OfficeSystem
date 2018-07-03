@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 附件
- * @author 王凯
+ * @author Administrator
  *
  */
 public class Attachment implements Serializable {

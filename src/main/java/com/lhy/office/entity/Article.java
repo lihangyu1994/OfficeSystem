@@ -8,7 +8,7 @@ import org.springframework.scheduling.config.Task;
 
 /**
  * 公文
- * @author 王凯
+ * @author Administrator
  *
  */
 public class Article implements Serializable {

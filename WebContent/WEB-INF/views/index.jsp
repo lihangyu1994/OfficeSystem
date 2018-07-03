@@ -53,7 +53,7 @@
 								<a href="<%= basePath %>User/viewSelf" target="main">查看个人信息</a>
 							</li>
 							<li>
-								<a href="<%= basePath %>User/toModifySelf" target="main">修改个人信息</a>
+								<a href= "<%=request.getContextPath()%>/views/user/usermodify-self.jsp"target="main">修改个人信息</a>
 							</li>
 							<li>
 								<a href="<%= basePath %>User/toPasswordModify" target="main">修改密码</a>

@@ -35,22 +35,23 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
  	
   <!-- 配置拦截器 -->
-<!--      <mvc:interceptors>
-		登录拦截器
+	<mvc:interceptors>
+		<!-- 登录拦截器 -->
 		<mvc:interceptor>
-			设置拦截路径，拦截所有的controller和资源，排除下面设置的资源
-			<mvc:mapping path="/**"/>
-			排除静态资源，对静态资源不做拦截
-			<mvc:exclude-mapping path="/css/**"/>
-			<mvc:exclude-mapping path="/fonts/**"/>
-			<mvc:exclude-mapping path="/images/**"/>
-			<mvc:exclude-mapping path="/js/**"/>
-			
-			排除登录操作和获取验证码操作，对此类操作不做拦截
-			<mvc:exclude-mapping path="/captcha"/>
-			<mvc:exclude-mapping path="/login"/>
-			<mvc:exclude-mapping path="/login.jsp"/>
- 		</mvc:interceptor>
-    </mvc:interceptors> -->
+			<!-- 设置拦截路径，拦截所有的controller和资源，排除下面设置的资源 -->
+			<mvc:mapping path="/**" />
+			<!-- 排除静态资源，对静态资源不做拦截 -->
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/fonts/**" />
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/js/**" />
+
+			<!-- 排除登录操作和获取验证码操作，对此类操作不做拦截 -->
+ 			<mvc:exclude-mapping path="/captcha" />
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/login.jsp" /> 
+			<bean class="com.lhy.office.controller.UserController" />
+		</mvc:interceptor>
+	</mvc:interceptors> 
 
 </beans>

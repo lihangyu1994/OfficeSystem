@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 审核信息
- * @author 王凯
+ * @author Administrator
  *
  */
 public class AuditMessage implements Serializable {

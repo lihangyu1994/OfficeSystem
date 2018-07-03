@@ -13,6 +13,10 @@ public class UserReqeust extends BaseResponse{
 	private String password;
 	/**验证码*/
 	private String code;
+	/**旧密码*/
+	private String oldPassword;
+	/**确认新密码*/
+	private String confirmPassword;
 	
 	
 	/**登录用户名*/
@@ -39,6 +43,23 @@ public class UserReqeust extends BaseResponse{
 	public void setCode(String code) {
 		this.code = code;
 	}
+	/**旧密码*/
+	public String getOldPassword() {
+		return oldPassword;
+	}
+	/**旧密码*/
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+	/**确认新密码*/
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	/**确认新密码*/
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	
 	
 	
 }

@@ -62,18 +62,22 @@ public class LoginController extends AbstractController {
 		if (!StringUtils.hasText(request.getLoginName())) {
 			map.put("msg", "登录名不能为空");
 			map.put("result", false);
+			return "login";
 		}
 		if (!StringUtils.hasText(request.getPassword())) {
 			map.put("msg", "密码不能为空");
 			map.put("result", false);
+			return "login";
 		}
 		if (!StringUtils.hasText(request.getCode())) {
 			map.put("msg", "验证码不能为空");
 			map.put("result", false);
+			return "login";
 		}
 		if (!request.getCode().equalsIgnoreCase((String) getSession().getAttribute("code"))) {
 			map.put("msg", "验证码不正确");
 			map.put("result", false);
+			return "login";
 		}
 		User user = new User();
 		user.setLoginName(request.getLoginName());
@@ -87,11 +91,11 @@ public class LoginController extends AbstractController {
 		if (!md5Helper.getTwiceMD5ofString(request.getPassword()).equals(userModel.getPassword())) {
 			map.put("msg", "密码不正确");
 			map.put("result", false);
+			return "login";
 		} else {
 			setSessionParam(Constants.SESSION_CUSTOMER_INFO, userModel);
-			return "forward:/toIndex";
+			return "redirect:/toIndex";
 		}
-		return "login";
 	}
 
 	@RequestMapping("/toLogin")
@@ -151,12 +155,13 @@ public class LoginController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public String logout() {
+	public String logout(Map<String, Object> map) {
 		// 移除user
 		getSession().removeAttribute(Constants.SESSION_CUSTOMER_INFO);
 		// 注销session
 		getSession().invalidate();
-		
-		return "login";
+		map.put("msg", "客户不存在");
+		map.put("result", false);
+		return "redirect:toLogin";
 	}
 }

@@ -1,12 +1,17 @@
 package com.lhy.office.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lhy.office.controller.base.AbstractController;
 import com.lhy.office.dto.UserReqeust;
 import com.lhy.office.entity.User;
@@ -102,5 +107,31 @@ public class UserController extends AbstractController {
 		map.put("msg", "密码修改成功");
 		return "/user/userview-self";
 	}
-	
+	/**
+	 * 客户管理列表
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/users")
+	public String users(UserReqeust userRequest,Map<String,Object>map,
+			@RequestParam(value="pageNo",defaultValue="1",required=false) Integer pageNo,
+			@RequestParam(value="pageCount",defaultValue="10",required=false) Integer pageCount) {
+
+		// 引入PageHelper分页插件
+		// 在查询之前只需要调用，传入页码，以及每页的大小
+		PageHelper.startPage(pageNo, pageCount);
+
+		User user = new User();
+		user.setUserTrueName(userRequest.getUserTrueName());
+		List<User> users = userService.selectByKeyWord(user);
+		PageInfo<User> page = new PageInfo<User>(users, 5);
+
+		// 保存结果集到显示页面
+		map.put("pageNo", pageNo);
+		map.put("pageCount", pageCount);
+		map.put("page", page);
+		// 保存模糊查询条件以便回显
+		map.put("userTrueName", userRequest.getUserTrueName());
+		return "user/userManage";
+	}
 }

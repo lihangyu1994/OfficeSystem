@@ -17,6 +17,8 @@ public class UserReqeust extends BaseResponse{
 	private String oldPassword;
 	/**确认新密码*/
 	private String confirmPassword;
+	/**用户真实姓名*/
+	private String userTrueName;
 	
 	
 	/**登录用户名*/
@@ -58,6 +60,12 @@ public class UserReqeust extends BaseResponse{
 	/**确认新密码*/
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+	public String getUserTrueName() {
+		return userTrueName;
+	}
+	public void setUserTrueName(String userTrueName) {
+		this.userTrueName = userTrueName;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.lhy.office.service;
 
+import java.util.List;
+
 import com.lhy.office.entity.User;
 
 public interface UserService {
@@ -21,5 +23,11 @@ public interface UserService {
 	 * @param user
 	 */
 	public void updateUser(User user);
+	/**
+	 * 查询客户列表
+	 * @param user
+	 * @return
+	 */
+	public List<User> selectByKeyWord(User user);
 }
 

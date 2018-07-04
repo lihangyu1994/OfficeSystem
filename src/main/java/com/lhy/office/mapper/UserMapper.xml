@@ -73,22 +73,22 @@
 	<update id="updateUser" parameterType="com.lhy.office.entity.User">
 		update tb_user
 		<set>
- 			<if test="loginName!=null">
+ 			<if test="loginName !=null">
 				loginname=#{loginName},
 			</if>
-			<if test="password!=null">
+			<if test="password !=null">
 				password=#{password},			
 			</if>
-			<if test="userTrueName!=null">
+			<if test="userTrueName !=null">
 				usertruename=#{userTrueName},
 			</if>
-			<if test="job!=null">
+			<if test="job !=null">
 				job=#{job},
 			</if>
-			<if test="phone!=null">
+			<if test="phone !=null">
 				phone=#{phone},
 			</if>
-			<if test="email!=null">
+			<if test="email !=null">
 				email=#{email},
 			</if>
 			<if test="instId != null">
@@ -103,5 +103,57 @@
 		</set>
 		where userid=#{userId}
 	</update>
+	
+	<!-- 级联模糊查询 -->
+	<select id="selectByKeyWord" parameterType="com.lhy.office.entity.User" resultMap="CascadeResultMap">
+	<!-- 设置字符串 -->
+		<if test="loginName!=null">
+			<bind name="_loginName" value="'%'+loginName+'%'"/>
+		</if>
+		<if test="userTrueName!=null">
+			<bind name="_userTrueName" value="'%'+userTrueName+'%'" />
+		</if>
+		<if test="phone!=null">
+			<bind name="_phone" value="'%'+phone+'%'"/>
+		</if>
+		<if test="email!=null">
+			<bind name="_email" value="'%'+email+'%'"></bind>
+		</if>
+		
+		<!-- 引入级联sql -->
+		<include refid="cascadeSql"></include>
+		<!-- 动态设置查询时间 -->
+		where 1=1
+		<if test="userId !=null">
+			AND userid=#{userId}
+		</if>
+		<if test="loginName !=null">
+			AND loginname=#{_loginName}
+		</if>
+		<if test="password !=null">
+			AND password =#{password}
+		</if>
+		<if test="userTrueName !=null">
+			AND usertruename LIKE #{_userTrueName} 
+		</if>
+		<if test="job !=null">
+			AND job=#{job}
+		</if>
+		<if test="phone !=null">
+			AND phone=#{phone}
+		</if>
+		<if test="email !=null">
+			AND email=#{email}
+		</if>
+		<if test="instId != null">
+			AND inst_id = #{instId}
+		</if>
+		<if test="roleId != null">
+			AND role_id = #{roleId}
+		</if>
+		<if test="userState != null">
+			AND userstate = #{userState}
+		</if> 
+	</select>
 
 </mapper>

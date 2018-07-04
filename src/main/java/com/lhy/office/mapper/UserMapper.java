@@ -1,5 +1,7 @@
 package com.lhy.office.mapper;
 
+import java.util.List;
+
 import com.lhy.office.entity.User;
 
 public interface UserMapper {
@@ -20,5 +22,11 @@ public interface UserMapper {
 	 * @param user
 	 */
 	public void updateUser(User user);
+	/**
+	 * 查询客户列表
+	 * @param user
+	 * @return
+	 */
+	public List<User> selectByKeyWord(User user);
 }
 

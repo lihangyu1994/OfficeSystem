@@ -46,6 +46,22 @@
 		order by
 		fun.funid asc
 	</select>
+	
+	<select id="getRoles" parameterType="com.lhy.office.entity.Role" resultMap="CascadeResultMap">
+		<!-- 引入级联查询sql -->
+		<include refid="cascadeSelect"/>
+		<!-- 加上条件 -->
+		 where 1=1
+		<if test="roleState!=null">
+			and rolestate=#{roleState}
+		</if>
+		<if test="roleId!=null">
+			and roleid=#{roleId}
+		</if>
+		<if test="roleName!=null">
+		 	and rolename=#{roleName}
+		</if>
+	</select>
 
 </mapper>
 

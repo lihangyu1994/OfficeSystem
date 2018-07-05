@@ -1,5 +1,7 @@
 package com.lhy.office.mapper;
 
+import java.util.List;
+
 import com.lhy.office.entity.Role;
 
 /**
@@ -14,4 +16,10 @@ public interface RoleMapper {
 	 * @return
 	 */
 	public Role queryFunctionByRoleId(int roleId);
+	/**
+	 * 查询角色信息
+	 * @param role
+	 * @return
+	 */
+	public List<Role> getRoles(Role role); 
 }

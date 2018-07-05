@@ -1,4 +1,6 @@
 package com.lhy.office.entity;
+
+
 /**
  * 组织机构
  * @author Administrator
@@ -6,9 +8,9 @@ package com.lhy.office.entity;
  */
 public class Institution {
 	
-	private int instId;
+	private Integer instId;
 	
-	private int mergedinstId;
+	private Integer mergedinstId;
 	
 	private String instName;
 	
@@ -16,21 +18,23 @@ public class Institution {
 	
 	private String postCode;
 	
-	private int instState;
+	private Integer instState;
+	
+   private Institution mergedInstitution;
 
-	public int getInstId() {
+	public Integer getInstId() {
 		return instId;
 	}
 
-	public void setInstId(int instId) {
+	public void setInstId(Integer instId) {
 		this.instId = instId;
 	}
 
-	public int getMergedinstId() {
+	public Integer getMergedinstId() {
 		return mergedinstId;
 	}
 
-	public void setMergedinstId(int mergedinstId) {
+	public void setMergedinstId(Integer mergedinstId) {
 		this.mergedinstId = mergedinstId;
 	}
 
@@ -58,13 +62,20 @@ public class Institution {
 		this.postCode = postCode;
 	}
 
-	public int getInstState() {
+	public Integer getInstState() {
 		return instState;
 	}
 
-	public void setInstState(int instState) {
+	public void setInstState(Integer instState) {
 		this.instState = instState;
 	}
-	
-	
+
+	public Institution getMergedInstitution() {
+		return mergedInstitution;
+	}
+
+	public void setMergedInstitution(Institution mergedInstitution) {
+		this.mergedInstitution = mergedInstitution;
+	}
+
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lhy.office.mapper.InstitutionMapper">
+	<resultMap  id="BaseResultMap" type="com.lhy.office.entity.Institution">
+		<id column="instid" jdbcType="INTEGER" property="instId" />
+		<result column="instname" jdbcType="VARCHAR" property="instName"/>
+		<result column="instaddr" jdbcType="VARCHAR" property="instAddr"/>
+		<result column="postcode" jdbcType="VARCHAR" property="postCode"/>
+		<result column="inststate" jdbcType="INTEGER" property="instState"/>
+		<result column="mergedinstid" jdbcType="INTEGER" property="mergedinstid"/>
+		<!-- 设置合并后机构相关信息 -->
+ 		<association property="mergedInstitution" javaType="com.lhy.office.entity.Institution">
+			<id column="new_instid" jdbcType="INTEGER" property="instId"/>
+			<result column="new_instname" jdbcType="VARCHAR" property="instName"/>
+		</association>
+	</resultMap>
+	
+	<!-- 级联查询sql -->
+	<sql id="cascadeSql">
+		select
+			inst.instid,
+			inst.mergedinstid,
+			inst.instname,
+			inst.instaddr,
+			inst.postcode,
+			inst.inststate,
+ 			new.instid as new_instid,
+			new.instname as new_instname
+		from
+		 tb_institution inst
+		 left join
+		 tb_institution new ON inst.mergedinstid= new.instid
+	</sql>
+
+	<select id="getInstitutions" parameterType="com.lhy.office.entity.Institution" resultMap="BaseResultMap">
+		<!-- 引入级联sql -->
+		<include refid="cascadeSql" />
+		where 1=1
+		<if test="instId!=null">
+			and inst.instid=#{instId}
+		</if>
+		<if test="mergedinstId!=null">
+			and inst.mergedinstid=#{mergedinstId}
+		</if>
+		<if test="instName!=null">
+			and inst.instname=#{instName}
+		</if>
+		<if test="instAddr!=null">
+			and inst.instaddr=#{instAddr}
+		</if>
+		<if test="postCode!=null">
+			and inst.postcode=#{postCode}
+		</if>
+		<if test="instState!=null">
+			and inst.inststate=#{instState}
+		</if>
+		order by
+		inst.instid desc
+	</select>
+
+</mapper>

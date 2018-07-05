@@ -103,8 +103,8 @@
 																		</c:choose>
 																	</td>
 																	<td style="line-height: 30px;text-align: center;">
-																		<a href="<%= basePath %>user/toView?userid=${user.userId}" class="btn btn-success btn-sm">查看</a>
-																		<a href="<%= basePath %>user/toModify?userid=${user.userId}" class="btn btn-warning btn-sm">编辑</a>
+																		<a href="<%= basePath %>User/toView?userId=${user.userId}" class="btn btn-success btn-sm">查看</a>
+																		<a href="<%= basePath %>User/toModify?userId=${user.userId}" class="btn btn-warning btn-sm">编辑</a>
 																	</td>
 																</tr>
 															</c:forEach>

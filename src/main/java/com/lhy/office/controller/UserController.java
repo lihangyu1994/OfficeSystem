@@ -189,4 +189,26 @@ public class UserController extends AbstractController {
 		
 		return "user/usermodify";
 	}
+	/**
+	 * 修改客户信息
+	 * @param user
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/modify")
+	public String modify(User user,Map<String,Object>map) {
+		if(userService.getUserByUsername(user.getLoginName())!=null) {
+			map.put("result", false);
+			map.put("msg", "用户名已存在");
+			return "user/usermodify";
+		}
+		if(StringUtils.hasText(user.getPassword())) {
+			String password = new MD5Helper().getTwiceMD5ofString(user.getPassword());
+			user.setPassword(password);
+		}
+		userService.updateUser(user);
+		map.put("result", true);
+		map.put("msg", "用户信息修改成功");
+		return "forward:/User/users";
+	}
 }

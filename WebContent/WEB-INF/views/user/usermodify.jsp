@@ -46,6 +46,9 @@
 									<h2 class="m-b-none">修改用户信息</h2>
 								</div>
 								
+								<!-- 增删改结果提示 -->
+								<jsp:include page="/common/top.jsp"></jsp:include>
+								
 								<form id="form" action="<%= basePath %>User/modify" method="post" 
 										class="form-horizontal" data-validate="parsley">
 									
@@ -64,7 +67,7 @@
 	                                	<header class="panel-heading font-bold">用户信息</header>
 		                                <div class="panel-body">
 		                                
-		                                	<input type="hidden" name="userid" value="${user.userId}">
+		                                	<input type="hidden" name="userId" value="${user.userId}">
 	                                        
 	                                        <div class="form-group">
 	                                            <label class="col-sm-4 control-label">

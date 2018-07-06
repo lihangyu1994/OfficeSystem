@@ -120,18 +120,6 @@
 														</c:otherwise>
 													</c:choose>
 												</tbody>
-												
-												<!-- 底表头 -->
-												<thead>
-													<tr>
-														<th style="text-align: center;">用户姓名</th>
-														<th style="text-align: center;">用户名</th>
-														<th style="text-align: center;">手机号</th>
-														<th style="text-align: center;">所属机构</th>
-														<th style="text-align: center;">状态</th>
-														<th style="text-align: center;">操作</th>
-													</tr>
-												</thead>
 											</table>
 										</div>
 										

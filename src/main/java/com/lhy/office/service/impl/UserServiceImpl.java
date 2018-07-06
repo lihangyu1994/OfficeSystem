@@ -32,5 +32,10 @@ public class UserServiceImpl implements UserService{
 	public List<User> selectByKeyWord(User user) {
 		return userMapper.selectByKeyWord(user);
 	}
+
+	@Override
+	public void add(User user) {
+			userMapper.add(user);
+	}
 	
 }

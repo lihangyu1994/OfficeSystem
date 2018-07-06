@@ -29,5 +29,10 @@ public interface UserService {
 	 * @return
 	 */
 	public List<User> selectByKeyWord(User user);
+	/**
+	 * 插入用户
+	 * @param user
+	 */
+	public void add(User user);
 }
 

@@ -16,6 +16,7 @@ import com.lhy.office.dto.UserReqeust;
 import com.lhy.office.entity.Institution;
 import com.lhy.office.entity.Role;
 import com.lhy.office.entity.User;
+import com.lhy.office.mapper.UserMapper;
 import com.lhy.office.service.InstitutionService;
 import com.lhy.office.service.RoleService;
 import com.lhy.office.service.UserService;
@@ -153,6 +154,20 @@ public class UserController extends AbstractController {
 	 */
 	@RequestMapping("/toView")
 	public String toView(Map<String, Object> map, Integer userId) {
+		
+		// 查询所有未被禁用的角色
+		Role role = new Role();
+		role.setRoleState(1);
+		List<Role> roles = roleService.getRoles(role);
+		map.put("roleList", roles);
+		
+		// 查询所有未被禁用的机构
+		Institution institution = new Institution();
+		institution.setInstState(1);
+		List<Institution> institutions = instService.getInstitutions(institution);
+		map.put("institutionList", institutions);
+		
+		
 		User user = new User();
 		user.setUserId(userId);
 		User userModel = userService.getUserByKeyWord(user);
@@ -209,6 +224,46 @@ public class UserController extends AbstractController {
 		userService.updateUser(user);
 		map.put("result", true);
 		map.put("msg", "用户信息修改成功");
+		return "forward:/User/users";
+	}
+	/**
+	 * 新增客户页面
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/toAdd")
+	public String toAdd(Map<String,Object>map) {
+		//1.加载所有没有被禁用的角色供用户选择
+		Role role = new Role();
+		role.setRoleState(1);
+		
+		List<Role> roles = roleService.getRoles(role);
+
+		map.put("roleList", roles);
+		
+		//2.加载出所有没有被禁用的机构
+		Institution institution = new Institution();
+		institution.setInstState(1);
+		
+		List<Institution> institutions = instService.getInstitutions(institution);
+		
+		map.put("institutionList", institutions);
+		
+		return "user/useradd";
+	}
+	
+	@RequestMapping("/add")
+	public String add(User user,Map<String,Object>map ) {
+		if(userService.getUserByUsername(user.getLoginName())!=null) {
+			map.put("result", false);
+			map.put("msg", "用户名已存在");
+			return "forward:/User/toAdd";
+		}
+		String password = new MD5Helper().getTwiceMD5ofString(user.getPassword());
+		user.setPassword(password);
+		userService.add(user);
+		map.put("result", true);
+		map.put("msg", "新增客户成功");
 		return "forward:/User/users";
 	}
 }

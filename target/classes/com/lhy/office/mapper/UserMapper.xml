@@ -156,5 +156,74 @@
 			AND userstate = #{userState}
 		</if> 
 	</select>
+	
+	<insert id="add" parameterType="com.lhy.office.entity.User">
+		insert into tb_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId!=null">
+				userid,
+			</if>
+			<if test="loginName!=null">
+				loginname,
+			</if>
+			<if test="password!=null">
+				password,
+			</if>
+			<if test="userTrueName!=null">
+				userTrueName,
+			</if>
+			<if test="job!=null">
+				job,
+			</if>
+			<if test="phone!=null">
+				phone,
+			</if>
+			<if test="email!=null">
+				email,
+			</if>
+			<if test="instId!=null">
+				inst_id,
+			</if>
+			<if test="roleId!=null">
+				role_id,
+			</if>
+			<if test="userState!=null">
+				userstate,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="userId!=null">
+				#{userId},
+			</if>
+			<if test="loginName!=null">
+				#{loginName},
+			</if>
+			<if test="password!=null">
+				#{password},
+			</if>
+			<if test="userTrueName!=null">
+				#{userTrueName},
+			</if>
+			<if test="job!=null">
+				#{job},
+			</if>
+			<if test="phone != null">
+				#{phone},
+			</if>
+			<if test="email != null">
+				#{email},
+			</if>
+			<if test="instId != null">
+				#{instId},
+			</if>
+			<if test="roleId != null">
+				#{roleId},
+			</if>
+			<if test="userState != null">
+				#{userState},
+			</if>
+		</trim>
+		
+	</insert>
 
 </mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lhy.office.mapper.LogMapper">
+    <resultMap type="com.lhy.office.entity.Log" id="BaseResultMap">
+    	<id column="logid" property="logId" jdbcType="INTEGER" />
+    	<result column="optname"  property="optName" jdbcType="VARCHAR"/>
+    	<result column="bussiness_id" property="bussinessId" jdbcType="INTEGER"/>
+    	<result column="operator_id" property="operatorId" jdbcType="INTEGER"/>
+    	<result column="opttime" property="optTime" jdbcType="TIMESTAMP"/>
+    	<result column="ipaddress" property="ipAddress" jdbcType="VARCHAR"/>
+    	
+    	<association property="operator" javaType="com.lhy.office.entity.User">
+    		<id column="userid" property="userId" jdbcType="INTEGER"/>
+    		<result column="usertruename" property="userTrueName" jdbcType="VARCHAR"/>
+    	</association>
+    </resultMap>
+    
+    <sql id="cascadesql">
+    	select 
+    		log.logid,
+    		log.optname,
+    		log.bussiness_id,
+    		log.operator_id,
+    		log.opttime,
+    		log.ipaddress,
+    		user.userid,
+    		user.usertruename
+    	from 
+    	tb_log log
+    	left join tb_user user on log.operator_id = user.userid
+    </sql>
+    
+    <select id="getLogsByKey" parameterType="com.lhy.office.entity.Log" resultMap="BaseResultMap">
+    	
+    	<include refid="cascadesql"></include>
+    	where 1=1
+    	<if test="logId!=null">
+    		and logid = #{logId}	
+    	</if>
+    	<if test="optName!=null">
+    		and optname = #{optName}
+    	</if>
+    	<if test="bussinessId!=null">
+    		and bussiness_id=#{bussinessId}
+    	</if>
+    	<if test="operatorId!=null">
+    		and operator_id=#{operatorId}
+    	</if>
+    	<if test="ipAddress!=null">
+    		and ipaddress=#{ipAddress}
+    	</if>
+    	order by 
+    	opttime desc
+    
+    </select>
+
+</mapper>

@@ -126,7 +126,9 @@ public class UserController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping("/users")
-	public String users(UserReqeust userRequest, Map<String, Object> map, @RequestParam(value = "pageNo", defaultValue = "1", required = false) Integer pageNo, @RequestParam(value = "pageCount", defaultValue = "10", required = false) Integer pageCount) {
+	public String users(UserReqeust userRequest, Map<String, Object> map, 
+			@RequestParam(value = "pageNo", defaultValue = "1", required = false) Integer pageNo, 
+			@RequestParam(value = "pageCount", defaultValue = "10", required = false) Integer pageCount) {
 
 		// 引入PageHelper分页插件
 		// 在查询之前只需要调用，传入页码，以及每页的大小

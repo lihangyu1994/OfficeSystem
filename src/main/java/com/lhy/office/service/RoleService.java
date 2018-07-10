@@ -18,17 +18,11 @@ public interface RoleService {
 	 */
 	public Role queryFunctionByRoleId(Integer roleId);
 	/**
-	 * 查询角色信息
-	 * @param role
-	 * @return
-	 */
-	public List<Role> getRoles(Role role); 
-	/**
-	 * 分页查询角色
+	 * 查询角色
 	 * @param role
 	 * @param pageNo
 	 * @param pageCount
 	 * @return
 	 */
-	public PageInfo<Role> getRolesByPaging(Role role,Integer pageNo,Integer pageCount);
+	public List<Role> getRoles(Role role);
 }

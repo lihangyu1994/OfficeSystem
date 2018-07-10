@@ -22,4 +22,10 @@ public interface RoleMapper {
 	 * @return
 	 */
 	public List<Role> getRoles(Role role); 
+	/**
+	 * 角色管理
+	 * @param role
+	 * @return
+	 */
+	public List<Role> getRolesByPage(Role role);
 }

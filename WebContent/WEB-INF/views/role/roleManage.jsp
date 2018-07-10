@@ -57,9 +57,9 @@
 													<select id="role_id" name="roleId" class="input-sm form-control input-s-sm inline">
 														<option value="">全部</option>
 														<c:forEach items="${allList}" var="role">
-															<option value="${role.roleid}"
-																<c:if test="${role.roleid == role_id}"> selected = "selected"</c:if>
-															>${role.rolename}
+															<option value="${role.roleId}"
+																<c:if test="${role.roleId == role_id}"> selected = "selected"</c:if>
+															>${role.roleName}
 															</option>
 														</c:forEach>
 													</select>
@@ -93,17 +93,17 @@
 														<c:when test="${!empty page.list}">
 															<c:forEach items="${page.list}" var="role">
 																<tr>
-																	<td style="line-height: 30px;text-align: center;">${role.rolename}</td>
-																	<td style="line-height: 30px;text-align: center;">${role.roledesc}</td>
+																	<td style="line-height: 30px;text-align: center;">${role.roleName}</td>
+																	<td style="line-height: 30px;text-align: center;">${role.roleDesc}</td>
 																	<td style="line-height: 30px;text-align: center;">
 																		<c:choose>
-																			<c:when test="${role.rolestate == 1}">正常</c:when>
+																			<c:when test="${role.roleState == 1}">正常</c:when>
 																			<c:otherwise>禁用</c:otherwise>
 																		</c:choose>
 																	</td>
 																	<td style="line-height: 30px;text-align: center;">
-																		<a href="<%= basePath %>role/toRoleRight?roleid=${role.roleid}" class="btn btn-warning btn-sm">设置权限</a>
-																		<a href="<%= basePath %>role/toModify?roleid=${role.roleid}" class="btn btn-danger btn-sm">修改/禁用角色</a>
+																		<a href="<%= basePath %>role/toRoleRight?roleid=${role.roleId}" class="btn btn-warning btn-sm">设置权限</a>
+																		<a href="<%= basePath %>role/toModify?roleid=${role.roleId}" class="btn btn-danger btn-sm">修改/禁用角色</a>
 																	</td>
 																</tr>
 																

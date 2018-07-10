@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lhy.office.mapper.RoleMapper">
+
 	<!-- 角色信息结果集(含级联数据)-->
 	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.Role" >
 		<id column="roleid" jdbcType="INTEGER" property="roleId"/>
@@ -18,7 +19,15 @@
 			<result column="funstate" property="funState"/>
 		</collection>	
 	</resultMap>
-
+	
+	<!-- 基本数据 -->
+	<resultMap id="BaseResultMap" type="com.lhy.office.entity.Role" >
+		<id column="roleid" jdbcType="INTEGER" property="roleId"/>
+		<result column="rolename" jdbcType="VARCHAR" property="roleName"/>
+		<result column="roledesc" jdbcType="VARCHAR" property="roleDesc"/>
+		<result column="rolestate" jdbcType="INTEGER" property="roleState"/>
+	</resultMap>
+	
 	<!-- 级联查询的基本语句 -->
 	<sql id="cascadeSelect">
 		select
@@ -37,6 +46,24 @@
 		left join 
 			tb_function fun on tb_roleright.fun_id = fun.funid
 	</sql>
+	
+	<sql id="WhereAndOrderBy">
+		<if test="roleId!=null">
+			and roleid=#{roleId}
+		</if>
+		<if test="roleName!=null">
+			and rolename=#{roleName}
+		</if>	
+		<if test="roleDesc!=null">
+			and roledesc=#{roleDesc}
+		</if>
+		<if test="roleState!=null">
+			and rolestate=#{roleState}
+		</if>
+		ORDER BY
+		roleid DESC
+	</sql>
+	
 	<!-- 按主键查询角色信息(级联) -->
 	<select id="queryFunctionByRoleId" parameterType="Integer" resultMap="CascadeResultMap">
 		<!-- 引入级联查询sql -->
@@ -47,20 +74,24 @@
 		fun.funid asc
 	</select>
 	
-	<select id="getRoles" parameterType="com.lhy.office.entity.Role" resultMap="CascadeResultMap">
+	<select id="selectByKeywordCascade" parameterType="com.lhy.office.entity.Role" resultMap="CascadeResultMap">
 		<!-- 引入级联查询sql -->
 		<include refid="cascadeSelect"/>
 		<!-- 加上条件 -->
 		 where 1=1
-		<if test="roleState!=null">
-			and rolestate=#{roleState}
-		</if>
-		<if test="roleId!=null">
-			and roleid=#{roleId}
-		</if>
-		<if test="roleName!=null">
-		 	and rolename=#{roleName}
-		</if>
+		<include refid="WhereAndOrderBy"></include>
+	</select>
+	
+	<select id="getRoles" parameterType="com.lhy.office.entity.Role" resultMap="BaseResultMap">
+		select 
+			role.roleid,
+			role.rolename,
+			role.roledesc,
+			role.rolestate
+		from 
+			tb_role role
+		where 1=1
+		<include refid="WhereAndOrderBy"></include>
 	</select>
 
 </mapper>

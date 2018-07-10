@@ -23,6 +23,14 @@ public class LogController {
 	@Autowired
 	private LogService logService;
 	
+	/**
+	 * 日志列表
+	 * @param map
+	 * @param pageNo
+	 * @param pageCount
+	 * @param log
+	 * @return
+	 */
 	@RequestMapping("/logs")
 	public String logs(Map<String,Object>map,
 			@RequestParam(value="pageNo",defaultValue="1",required=false) Integer pageNo,

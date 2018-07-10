@@ -2,6 +2,7 @@ package com.lhy.office.service;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import com.lhy.office.entity.Role;
 
 /**
@@ -22,4 +23,12 @@ public interface RoleService {
 	 * @return
 	 */
 	public List<Role> getRoles(Role role); 
+	/**
+	 * 分页查询角色
+	 * @param role
+	 * @param pageNo
+	 * @param pageCount
+	 * @return
+	 */
+	public PageInfo<Role> getRolesByPaging(Role role,Integer pageNo,Integer pageCount);
 }

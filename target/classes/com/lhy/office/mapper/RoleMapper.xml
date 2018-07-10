@@ -93,6 +93,24 @@
 		where 1=1
 		<include refid="WhereAndOrderBy"></include>
 	</select>
+	
+	<update id="updateRole" parameterType="com.lhy.office.entity.Role">
+		update
+			tb_role
+		<set>
+			<if test="roleName!=null">
+				rolename = #{roleName},
+			</if>
+			<if test="roleDesc!=null">
+				roledesc = #{roleDesc},
+			</if>
+			<if test="roleState!=null">
+				rolestate = #{roleState},
+			</if>
+		</set>
+		where
+			roleid=#{roleId}
+	</update>
 
 </mapper>
 

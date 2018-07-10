@@ -33,6 +33,30 @@ public class RoleController {
 		map.put("pageCount", pageCount);
 		map.put("page", page);
 		map.put("allList", roleService.getRoles(null));
+		//保存模糊查询条件以便回显
+		map.put("role_id", role.getRoleId());
 		return "role/roleManage";
+	}
+	
+	@RequestMapping("/toModify")
+	public String toModify(Integer roleid,Map<String,Object>map) {
+		Role role = new Role();
+		role.setRoleId(roleid);
+		List<Role> roles = roleService.getRoles(role);
+		if(roles!=null&&roles.size()>0) {
+			map.put("role", roles.get(0));
+		}
+		return "role/rolemodify";
+	}
+	/**
+	 * 修改角色信息
+	 * @param role
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/modifyRole")
+	public String modifyRole(Role role,Map<String,Object>map) {
+		roleService.updateRole(role);
+		return "redirect:/role/roles";
 	}
 }

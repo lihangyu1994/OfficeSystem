@@ -2,7 +2,6 @@ package com.lhy.office.service;
 
 import java.util.List;
 
-import com.github.pagehelper.PageInfo;
 import com.lhy.office.entity.Role;
 
 /**
@@ -25,4 +24,9 @@ public interface RoleService {
 	 * @return
 	 */
 	public List<Role> getRoles(Role role);
+	/**
+	 * 修改角色信息
+	 * @param role
+	 */
+	public void updateRole(Role role);
 }

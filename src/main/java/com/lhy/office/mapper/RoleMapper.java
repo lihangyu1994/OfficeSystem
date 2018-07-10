@@ -28,4 +28,9 @@ public interface RoleMapper {
 	 * @return
 	 */
 	public List<Role> getRolesByPage(Role role);
+	/**
+	 * 修改角色信息
+	 * @param role
+	 */
+	public void updateRole(Role role);
 }

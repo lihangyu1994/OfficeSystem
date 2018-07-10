@@ -58,7 +58,9 @@
 														<option value="">全部</option>
 														<c:forEach items="${allList}" var="role">
 															<option value="${role.roleId}"
-																<c:if test="${role.roleId == role_id}"> selected = "selected"</c:if>
+																<c:if test="${role.roleId == role_id}"> 
+																	selected = "selected"
+																</c:if>
 															>${role.roleName}
 															</option>
 														</c:forEach>
@@ -153,7 +155,7 @@
 				var role_id = $("#role_id").val();
 				
 				var url = host + "role/roles?pageNo=" + pageNo + "&pageCount=" + pageCount 
-							+ "&role_id=" + role_id;
+							+ "&roleId=" + role_id;
 				return url;
 			}
 		

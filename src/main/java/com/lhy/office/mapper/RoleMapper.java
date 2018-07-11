@@ -2,6 +2,8 @@ package com.lhy.office.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.lhy.office.entity.Role;
 
 /**
@@ -33,4 +35,15 @@ public interface RoleMapper {
 	 * @param role
 	 */
 	public void updateRole(Role role);
+	/**
+	 * 删除角色拥有功能
+	 * @param roleId
+	 */
+	public void deleteRoleRight(Integer roleId);
+	/**
+	 * 角色新增权限
+	 * @param roleId
+	 * @param funId
+	 */
+	public void addRoleRight(@Param("roleId")Integer roleId,@Param("funId")Integer funId);
 }

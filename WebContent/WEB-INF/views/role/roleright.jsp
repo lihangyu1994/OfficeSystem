@@ -54,7 +54,8 @@
 									</div>
 									<br />
 									
-									<input type="hidden" name="roleid" value="${role.roleId}">
+									<input type="hidden" name="roleId" value="${role.roleId}">
+									
 									
 									<section class="panel panel-default">
 	                                	<header class="panel-heading font-bold">
@@ -62,7 +63,10 @@
 	                                	</header>
 		                                <div class="panel-body">
 											<h4>在功能名称前面的方框打钩表示该角色能够使用此功能！</h4>
-											
+											 <input  type="checkbox" name="haha" value="901">
+											 <input  type="checkbox" name="haha" value="902">
+											 <input  type="checkbox" name="haha" value="903">
+						                                       
 			            					<div class="col-sm-6">
 			            						<c:forEach items="${functionList}" var="parent">
 			            							<c:if test="${parent.funPid == -1 && parent.funId != -1}">

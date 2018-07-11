@@ -29,4 +29,15 @@ public interface RoleService {
 	 * @param role
 	 */
 	public void updateRole(Role role);
+	/**
+	 * 删除角色拥有功能
+	 * @param roleId
+	 */
+	public void deleteRoleRight(Integer roleId);
+	/**
+	 * 修改角色拥有功能
+	 * @param roleId
+	 * @param funids
+	 */
+	public void updateRoleRight(Integer roleId,Integer funids[]);
 }

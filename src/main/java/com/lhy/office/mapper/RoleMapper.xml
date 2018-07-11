@@ -111,6 +111,17 @@
 		where
 			roleid=#{roleId}
 	</update>
+	
+	<delete id="deleteRoleRight" parameterType="INTEGER">
+		delete from tb_roleright where role_id=#{roleId}
+	</delete>
+	
+	<insert id="addRoleRight">
+		insert into 
+			tb_roleright(role_id,fun_id)
+		values
+			(#{roleId},#{funId})
+	</insert>
 
 </mapper>
 

@@ -26,7 +26,22 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public void updateRole(Role role) {
-			roleMapper.updateRole(role);
+		roleMapper.updateRole(role);
+	}
+
+	@Override
+	public void deleteRoleRight(Integer roleId) {
+		roleMapper.deleteRoleRight(roleId);
+	}
+	
+	@Override
+	public void updateRoleRight(Integer roleId,Integer funids[]) {
+		// 先删除原始角色原始权限
+		roleMapper.deleteRoleRight(roleId);
+		// 循环加入新的权限
+		for(int i=0;i<funids.length;i++) {
+			roleMapper.addRoleRight(roleId, funids[i]);
+		}
 	}
 
 }

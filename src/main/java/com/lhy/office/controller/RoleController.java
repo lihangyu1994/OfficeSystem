@@ -87,4 +87,16 @@ public class RoleController {
 		
 		return "role/roleright";
 	}
+	/**
+	 * 修改权限
+	 * @param map
+	 * @param roleId
+	 * @param funids
+	 * @return
+	 */
+	@RequestMapping("/updateRoleRight")
+	public String updateRoleRight(Map<String,Object>map,Integer roleId,Integer[]funids) {
+		roleService.updateRoleRight(roleId, funids);
+		return "redirect:/role/roles";
+	}
 }

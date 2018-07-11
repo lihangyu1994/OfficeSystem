@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lhy.office.mapper.FunctionMapper">
+
+	<resultMap type="com.lhy.office.entity.Function" id="BaseResult">
+		<id column="funid" property="funId" jdbcType="INTEGER"/>
+		<result column="funname" property="funName" jdbcType="VARCHAR"/>
+		<result column="funpid" property="funPid" jdbcType="INTEGER"/>
+		<result column="funurl" property="funUrl" jdbcType="VARCHAR"/>
+		<result column="funstate" property="funState" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<sql id="BaseSql">
+		select 
+			funid,
+			funname,
+			funpid,
+			funurl,
+			funstate
+		from 
+		tb_function
+	</sql>
+	
+	<sql id="BaseWhere">
+		where 1=1
+		<if test="funId!=null">
+			and funid=#{funId}
+		</if>
+		<if test="funName!=null">
+			and funname=#{funName}
+		</if>
+		<if test="funPid!=null">
+			and funpid=#{funPid}
+		</if>
+		<if test="funUrl!=null">
+			and funurl=#{funUrl}
+		</if>
+		<if test="funState!=null">
+			and funstate=#{funState}
+		</if>
+	</sql>
+	
+	<select id="getFunctions" parameterType="com.lhy.office.entity.Function" resultMap="BaseResult">
+		<include refid="BaseSql"></include>
+		
+		<include refid="BaseWhere"></include>
+	</select>
+</mapper>

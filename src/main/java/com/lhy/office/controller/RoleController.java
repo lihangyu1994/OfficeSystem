@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lhy.office.entity.Function;
 import com.lhy.office.entity.Role;
+import com.lhy.office.service.FunctionService;
 import com.lhy.office.service.RoleService;
 
 @Controller
@@ -19,6 +21,9 @@ public class RoleController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private FunctionService functionService;
 	
 	@RequestMapping("/roles")
 	public String getRoles(Map<String,Object>map,
@@ -38,6 +43,12 @@ public class RoleController {
 		return "role/roleManage";
 	}
 	
+	/**
+	 * 设置角色信息页面
+	 * @param roleid
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping("/toModify")
 	public String toModify(Integer roleid,Map<String,Object>map) {
 		Role role = new Role();
@@ -58,5 +69,22 @@ public class RoleController {
 	public String modifyRole(Role role,Map<String,Object>map) {
 		roleService.updateRole(role);
 		return "redirect:/role/roles";
+	}
+	/**
+	 * 去设置权限
+	 * @param userid
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/toRoleRight")
+	public String toRoleRight(Integer roleid,Map<String,Object>map) {
+		
+		Role role = roleService.queryFunctionByRoleId(roleid);
+		map.put("role", role);
+		
+		List<Function> functionList = functionService.getFunctions(null);
+		map.put("functionList", functionList);
+		
+		return "role/roleright";
 	}
 }

@@ -40,4 +40,10 @@ public interface RoleService {
 	 * @param funids
 	 */
 	public void updateRoleRight(Integer roleId,Integer funids[]);
+	
+	/**
+	 * 新增角色
+	 * @param role
+	 */
+	public void addRole(Role role);
 }

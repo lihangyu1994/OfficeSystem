@@ -122,6 +122,33 @@
 		values
 			(#{roleId},#{funId})
 	</insert>
+	
+	<insert id="addRole" parameterType="com.lhy.office.entity.Role">
+		insert into
+		tb_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleName!=null">
+				rolename,
+			</if>
+			<if test="roleDesc!=null">
+				roledesc,
+			</if>
+			<if test="roleState!=null">
+				rolestate,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="roleName!=null">
+				#{roleName},
+			</if>
+			<if test="roleDesc!=null">
+				#{roleDesc},
+			</if>
+			<if test="roleState!=null">
+				#{roleState},
+			</if>
+		</trim>
+	</insert>
 
 </mapper>
 

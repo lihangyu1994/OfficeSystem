@@ -46,4 +46,9 @@ public interface RoleMapper {
 	 * @param funId
 	 */
 	public void addRoleRight(@Param("roleId")Integer roleId,@Param("funId")Integer funId);
+	/**
+	 * 新增角色
+	 * @param role
+	 */
+	public void addRole(Role role);
 }

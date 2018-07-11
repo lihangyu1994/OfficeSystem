@@ -99,4 +99,23 @@ public class RoleController {
 		roleService.updateRoleRight(roleId, funids);
 		return "redirect:/role/roles";
 	}
+	/**
+	 * 跳转到新增角色页面
+	 * @return
+	 */
+	@RequestMapping("/toAdd")
+	public String toAdd() {
+		return "role/roleadd";
+	}
+	/**
+	 * 新增角色
+	 * @param map
+	 * @param role
+	 * @return
+	 */
+	@RequestMapping("/addRole")
+	public String addRole(Map<String,Object>map,Role role) {
+		roleService.addRole(role);
+		return "redirect:/role/roles";
+	}
 }

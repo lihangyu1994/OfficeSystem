@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,7 +37,12 @@ public class LogController {
 			@RequestParam(value="pageNo",defaultValue="1",required=false) Integer pageNo,
 			@RequestParam(value="pageCount",defaultValue="10",required=false) Integer pageCount,Log log) {
 		
-			PageInfo<Log> page = logService.getLogsByKey(log,pageNo,pageCount);
+			PageInfo<Log> page = null;
+			if(StringUtils.hasText(log.getOptName())) {
+				 page = logService.getLogsByKey(log,pageNo,pageCount);
+			}else {
+				 page = logService.getLogsByKey(null,pageNo,pageCount);
+			}
 			map.put("pageNo", pageNo);
 			map.put("pageCount", pageCount);
 			map.put("page", page);

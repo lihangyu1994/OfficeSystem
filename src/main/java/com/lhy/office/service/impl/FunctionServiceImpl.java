@@ -8,13 +8,26 @@ import org.springframework.stereotype.Service;
 import com.lhy.office.entity.Function;
 import com.lhy.office.mapper.FunctionMapper;
 @Service
-public class FunctionService implements com.lhy.office.service.FunctionService {
+public class FunctionServiceImpl implements com.lhy.office.service.FunctionService {
 
 	@Autowired
 	private FunctionMapper functionMapper; 
+	
 	@Override
 	public List<Function> getFunctions(Function function) {
 		return functionMapper.getFunctions(function);
 	}
+
+	@Override
+	public List<Function> getFunctionList(Function function) {
+		return functionMapper.selectByKeyWord(function);
+	}
+
+	@Override
+	public void updateFunction(Function function) {
+		functionMapper.updateFunction(function);
+	}
+	
+	
 
 }

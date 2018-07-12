@@ -26,25 +26,72 @@
 	<sql id="BaseWhere">
 		where 1=1
 		<if test="funId!=null">
-			and funid=#{funId}
+			and tb_function.funid=#{funId}
 		</if>
 		<if test="funName!=null">
-			and funname=#{funName}
+			and tb_function.funname=#{funName}
 		</if>
 		<if test="funPid!=null">
-			and funpid=#{funPid}
+			and tb_function.funpid=#{funPid}
 		</if>
 		<if test="funUrl!=null">
-			and funurl=#{funUrl}
+			and tb_function.funurl=#{funUrl}
 		</if>
 		<if test="funState!=null">
-			and funstate=#{funState}
+			and tb_function.funstate=#{funState}
 		</if>
+	</sql>
+
+	
+	<!-- 级联查询结果集 -->
+	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.Function">
+		<id column="funid" jdbcType="INTEGER" property="funId" />
+		<result column="funname" jdbcType="VARCHAR" property="funName" />
+		<result column="funpid" jdbcType="INTEGER" property="funPid" />
+		<result column="funurl" jdbcType="VARCHAR" property="funUrl" />
+		<result column="funstate" jdbcType="INTEGER" property="funState" />
+		<!-- 封装关联的父功能 -->
+		<association property="parentFunction" javaType="com.lhy.office.entity.Function">
+			<id column="parentFunid" property="funId"/>
+			<result column="parentFunname" property="funName"/>
+		</association>
+	</resultMap>
+	
+	<sql id="CascadeSql">
+		SELECT
+			tb_function.funid,
+			tb_function.funname,
+			tb_function.funpid,
+			tb_function.funurl,
+			tb_function.funstate,
+			parent.funname parentFunname,
+			parent.funid parentFunid
+		FROM
+			tb_function
+		INNER JOIN 
+			tb_function AS parent 
+		ON 
+			tb_function.funpid = parent.funid
 	</sql>
 	
 	<select id="getFunctions" parameterType="com.lhy.office.entity.Function" resultMap="BaseResult">
 		<include refid="BaseSql"></include>
-		
 		<include refid="BaseWhere"></include>
 	</select>
+	
+	<select id="selectByKeyWord" parameterType="com.lhy.office.entity.Function" resultMap="CascadeResultMap">
+		<include refid="CascadeSql"></include>
+		<include refid="BaseWhere"></include>
+	</select>
+	
+	<update id="updateFunction" parameterType="com.lhy.office.entity.Function">
+		update tb_function 
+		<set>
+			<if test="funState!=null">
+				funstate = #{funState}
+			</if>
+		</set>
+		where funid =#{funId}
+	
+	</update>
 </mapper>

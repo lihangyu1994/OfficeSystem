@@ -88,7 +88,16 @@
 		update tb_function 
 		<set>
 			<if test="funState!=null">
-				funstate = #{funState}
+				funstate = #{funState},
+			</if>
+			<if test="funName!=null">
+				funname = #{funName},
+			</if>
+			<if test="funUrl!=null">
+				funurl = #{funUrl},
+			</if>
+			<if test="funPid!=null">
+				funpid =#{funPid},
 			</if>
 		</set>
 		where funid =#{funId}

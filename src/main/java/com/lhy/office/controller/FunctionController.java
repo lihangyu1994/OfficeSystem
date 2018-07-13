@@ -110,8 +110,31 @@ public class FunctionController {
 	 * @return
 	 */
 	@RequestMapping("/toModify")
-	public String toModify(Map<String,Object>map,String funid) {
-		return"";
+	public String toModify(Map<String,Object>map,Integer funid) {
+		
+		Function fun = new Function();
+		fun.setFunPid(-1);
+		List<Function> functions = functionService.getFunctions(fun);
+		map.put("functionList", functions);
+		
+		fun = new Function();
+		fun.setFunId(funid);
+		List<Function> function = functionService.getFunctions(fun);
+		if(function!=null&&function.size()>0) {
+			map.put("function", function.get(0));
+		}
+		return"function/functionmodify";
+	}
+	/**
+	 * 修改功能
+	 * @param map
+	 * @param function
+	 * @return
+	 */
+	@RequestMapping("/modifyFunction")
+	public String modifyFunction(Map<String,Object>map,Function function) {
+		functionService.updateFunction(function);
+		return "redirect:/fun/funs";
 	}
 	
 	

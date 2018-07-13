@@ -79,5 +79,40 @@ public class FunctionController {
 		return "redirect:/fun/funs";
 	}
 	
+	/**
+	 * 跳转到新增功能页面
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/toAdd")
+	public String toAdd(Map<String,Object>map) {
+		Function fun = new Function();
+		fun.setFunPid(-1);
+		List<Function> functions = functionService.getFunctions(fun);
+		map.put("functionList", functions);
+		return "function/functionadd";
+	}
+	/**
+	 * 新增功能模块
+	 * @param function
+	 * @return
+	 */
+	@RequestMapping("/addFunction")
+	public String addFunction(Function function) {
+		functionService.addFunction(function);
+		return "redirect:/fun/funs";
+	}
+	
+	/**
+	 * 修改功能
+	 * @param map
+	 * @param funid
+	 * @return
+	 */
+	@RequestMapping("/toModify")
+	public String toModify(Map<String,Object>map,String funid) {
+		return"";
+	}
+	
 	
 }

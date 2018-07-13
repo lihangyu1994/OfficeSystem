@@ -92,6 +92,37 @@
 			</if>
 		</set>
 		where funid =#{funId}
-	
 	</update>
+	
+	<insert id="addFunction" parameterType="com.lhy.office.entity.Function" useGeneratedKeys="true" keyColumn="funid">
+		insert into tb_function
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="funName!=null">
+				funname,
+			</if>
+			<if test="funPid!=null">
+				funpid,
+			</if>
+			<if test="funUrl!=null">
+				funurl,
+			</if>
+			<if test="funState!=null">
+				funstate,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="funName!=null">
+				#{funName},
+			</if>
+			<if test="funPid!=null">
+				#{funPid},
+			</if>
+			<if test="funUrl!=null">
+				#{funUrl},
+			</if>
+			<if test="funState!=null">
+				#{funState},
+			</if>
+		</trim>
+	</insert>
 </mapper>

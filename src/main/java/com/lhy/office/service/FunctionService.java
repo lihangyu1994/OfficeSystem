@@ -28,4 +28,9 @@ public interface FunctionService {
 	 * @param function
 	 */
 	public void updateFunction(Function function);
+	/**
+	 * 新增功能
+	 * @param function
+	 */
+	public void addFunction(Function function);
 }

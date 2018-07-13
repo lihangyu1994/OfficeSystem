@@ -27,6 +27,11 @@ public class FunctionServiceImpl implements com.lhy.office.service.FunctionServi
 	public void updateFunction(Function function) {
 		functionMapper.updateFunction(function);
 	}
+
+	@Override
+	public void addFunction(Function function) {
+		functionMapper.addFunction(function);
+	}
 	
 	
 

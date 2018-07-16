@@ -28,8 +28,12 @@
 		</plugin>
 	</plugins>
 	
-<!-- 	<mappers>
-		<mapper resource="com/lhy/office/mapper/UserMapper.xml" />
-	</mappers> -->
+	<mappers>
+		<mapper resource="mybatis/dao/UserMapper.xml" />
+		<mapper resource="mybatis/dao/FunctionMapper.xml" />
+		<mapper resource="mybatis/dao/InstitutionMapper.xml" />
+		<mapper resource="mybatis/dao/LogMapper.xml" />
+		<mapper resource="mybatis/dao/RoleMapper.xml" />
+	</mappers>
 
 </configuration>

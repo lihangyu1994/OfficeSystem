@@ -5,7 +5,7 @@
 <mapper namespace="com.lhy.office.mapper.RoleMapper">
 
 	<!-- 角色信息结果集(含级联数据)-->
-	<resultMap id="CascadeResultMap" type="=Role" >
+	<resultMap id="CascadeResultMap" type="Role" >
 		<id column="roleid" jdbcType="INTEGER" property="roleId"/>
 		<result column="rolename" jdbcType="VARCHAR" property="roleName"/>
 		<result column="roledesc" jdbcType="VARCHAR" property="roleDesc"/>

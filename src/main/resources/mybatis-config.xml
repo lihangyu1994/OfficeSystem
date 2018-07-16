@@ -10,6 +10,16 @@
 			的类似映射 -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
+	
+	<!-- 实体类,简称 -设置别名 -->
+	<typeAliases>
+		<typeAlias alias="User" type="com.lhy.office.entity.User" />
+		<typeAlias alias="Institution" type="com.lhy.office.entity.Institution" />
+		<typeAlias alias="Log" type="com.lhy.office.entity.Log" />
+		<typeAlias alias="Role" type="com.lhy.office.entity.Role" />
+		<typeAlias alias="Function" type="com.lhy.office.entity.Function" />
+	</typeAliases>
+	
 	<!-- 配置分页插件 -->
 	<plugins>
 		<plugin interceptor="com.github.pagehelper.PageInterceptor">
@@ -17,4 +27,9 @@
 			<property name="reasonable" value="true" />
 		</plugin>
 	</plugins>
+	
+<!-- 	<mappers>
+		<mapper resource="com/lhy/office/mapper/UserMapper.xml" />
+	</mappers> -->
+
 </configuration>

@@ -7,7 +7,7 @@
 <mapper namespace="com.lhy.office.mapper.UserMapper">
 
 	<!-- 级联结果集 -->
-	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.User">
+	<resultMap id="CascadeResultMap" type="User">
 		<!-- 表中原有基本类 -->
 		<id column="userid" jdbcType="INTEGER" property="userId" />
 		<result column="loginname" jdbcType="VARCHAR" property="loginName" />
@@ -20,12 +20,12 @@
 		<result column="role_id" jdbcType="INTEGER" property="roleId" />
 		<result column="userstate" jdbcType="INTEGER" property="userState"/>
 		<!-- 级联机构 -->
-		<association property="institution" javaType="com.lhy.office.entity.Institution">
+		<association property="institution" javaType="Institution">
 			<id column="instid" jdbcType="INTEGER" property="instId"></id>
 			<result column="instname" jdbcType="VARCHAR" property="instName"></result>
 		</association>
 		<!-- 级联角色 -->
-		<association property="role" javaType="com.lhy.office.entity.Role">
+		<association property="role" javaType="Role">
 			<id column="roleid" jdbcType="INTEGER" property="roleId"/>
 			<result column="rolename" jdbcType="VARCHAR" property="roleName"/>
 		</association>		
@@ -58,7 +58,7 @@
 	</select> 
 	
 	
-	<select id="getUserByKeyWord" parameterType="com.lhy.office.entity.User" resultMap="CascadeResultMap" >
+	<select id="getUserByKeyWord" parameterType="User" resultMap="CascadeResultMap" >
 		<!--引入级联sql  -->
 		<include refid="cascadeSql"></include>
 			where 1=1
@@ -71,7 +71,7 @@
 			
 	</select>
 	
-	<update id="updateUser" parameterType="com.lhy.office.entity.User">
+	<update id="updateUser" parameterType="User">
 		update tb_user
 		<set>
  			<if test="loginName !=null">
@@ -106,7 +106,7 @@
 	</update>
 	
 	<!-- 级联模糊查询 -->
-	<select id="selectByKeyWord" parameterType="com.lhy.office.entity.User" resultMap="CascadeResultMap">
+	<select id="selectByKeyWord" parameterType="User" resultMap="CascadeResultMap">
 	<!-- 设置字符串 -->
 		<if test="loginName!=null">
 			<bind name="_loginName" value="'%'+loginName+'%'"/>
@@ -157,7 +157,7 @@
 		</if> 
 	</select>
 	
-	<insert id="add" parameterType="com.lhy.office.entity.User">
+	<insert id="add" parameterType="User">
 		insert into tb_user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="userId!=null">

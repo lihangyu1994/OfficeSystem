@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lhy.office.controller.base.AbstractController;
 import com.lhy.office.entity.Function;
 import com.lhy.office.service.FunctionService;
 
 @RequestMapping("/fun")
 @Controller
-public class FunctionController {
+public class FunctionController extends AbstractController{
 
 	@Autowired
 	private FunctionService functionService;

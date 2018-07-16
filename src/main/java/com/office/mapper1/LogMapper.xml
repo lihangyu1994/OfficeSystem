@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lhy.office.mapper.LogMapper">
-    <resultMap type="com.lhy.office.entity.Log" id="BaseResultMap">
+    <resultMap type="Log" id="BaseResultMap">
     	<id column="logid" property="logId" jdbcType="INTEGER" />
     	<result column="optname"  property="optName" jdbcType="VARCHAR"/>
     	<result column="bussiness_id" property="bussinessId" jdbcType="INTEGER"/>
@@ -11,7 +11,7 @@
     	<result column="opttime" property="optTime" jdbcType="TIMESTAMP"/>
     	<result column="ipaddress" property="ipAddress" jdbcType="VARCHAR"/>
     	
-    	<association property="operator" javaType="com.lhy.office.entity.User">
+    	<association property="operator" javaType="User">
     		<id column="userid" property="userId" jdbcType="INTEGER"/>
     		<result column="usertruename" property="userTrueName" jdbcType="VARCHAR"/>
     	</association>
@@ -32,7 +32,7 @@
     	left join tb_user user on log.operator_id = user.userid
     </sql>
     
-    <select id="getLogsByKey" parameterType="com.lhy.office.entity.Log" resultMap="BaseResultMap">
+    <select id="getLogsByKey" parameterType="Log" resultMap="BaseResultMap">
     	
     	<include refid="cascadesql"></include>
     	where 1=1

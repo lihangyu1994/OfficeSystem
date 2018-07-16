@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lhy.office.controller.base.AbstractController;
 import com.lhy.office.entity.Function;
 import com.lhy.office.entity.Role;
 import com.lhy.office.service.FunctionService;
@@ -17,7 +18,7 @@ import com.lhy.office.service.RoleService;
 
 @Controller
 @RequestMapping("/role")
-public class RoleController {
+public class RoleController extends AbstractController{
 	
 	@Autowired
 	private RoleService roleService;

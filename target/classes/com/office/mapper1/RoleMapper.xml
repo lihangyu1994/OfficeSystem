@@ -5,13 +5,13 @@
 <mapper namespace="com.lhy.office.mapper.RoleMapper">
 
 	<!-- 角色信息结果集(含级联数据)-->
-	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.Role" >
+	<resultMap id="CascadeResultMap" type="=Role" >
 		<id column="roleid" jdbcType="INTEGER" property="roleId"/>
 		<result column="rolename" jdbcType="VARCHAR" property="roleName"/>
 		<result column="roledesc" jdbcType="VARCHAR" property="roleDesc"/>
 		<result column="rolestate" jdbcType="INTEGER" property="roleState"/>
 	<!-- 设置角色和功能的多对多关联关系 -->
-		<collection property="functionList" ofType="com.lhy.office.entity.Function">
+		<collection property="functionList" ofType="Function">
 			<id column="funid" property="funId"></id>
 			<result column="funname" property="funName"/>
 			<result column="funurl" property="funUrl"/>
@@ -21,7 +21,7 @@
 	</resultMap>
 	
 	<!-- 基本数据 -->
-	<resultMap id="BaseResultMap" type="com.lhy.office.entity.Role" >
+	<resultMap id="BaseResultMap" type="Role" >
 		<id column="roleid" jdbcType="INTEGER" property="roleId"/>
 		<result column="rolename" jdbcType="VARCHAR" property="roleName"/>
 		<result column="roledesc" jdbcType="VARCHAR" property="roleDesc"/>
@@ -74,7 +74,7 @@
 		fun.funid asc
 	</select>
 	
-	<select id="selectByKeywordCascade" parameterType="com.lhy.office.entity.Role" resultMap="CascadeResultMap">
+	<select id="selectByKeywordCascade" parameterType="Role" resultMap="CascadeResultMap">
 		<!-- 引入级联查询sql -->
 		<include refid="cascadeSelect"/>
 		<!-- 加上条件 -->
@@ -82,7 +82,7 @@
 		<include refid="WhereAndOrderBy"></include>
 	</select>
 	
-	<select id="getRoles" parameterType="com.lhy.office.entity.Role" resultMap="BaseResultMap">
+	<select id="getRoles" parameterType="Role" resultMap="BaseResultMap">
 		select 
 			role.roleid,
 			role.rolename,
@@ -94,7 +94,7 @@
 		<include refid="WhereAndOrderBy"></include>
 	</select>
 	
-	<update id="updateRole" parameterType="com.lhy.office.entity.Role">
+	<update id="updateRole" parameterType="Role">
 		update
 			tb_role
 		<set>
@@ -123,7 +123,7 @@
 			(#{roleId},#{funId})
 	</insert>
 	
-	<insert id="addRole" parameterType="com.lhy.office.entity.Role">
+	<insert id="addRole" parameterType="Role">
 		insert into
 		tb_role
 		<trim prefix="(" suffix=")" suffixOverrides=",">

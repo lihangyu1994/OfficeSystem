@@ -4,7 +4,7 @@
 
 <mapper namespace="com.lhy.office.mapper.FunctionMapper">
 
-	<resultMap type="com.lhy.office.entity.Function" id="BaseResult">
+	<resultMap type="Function" id="BaseResult">
 		<id column="funid" property="funId" jdbcType="INTEGER"/>
 		<result column="funname" property="funName" jdbcType="VARCHAR"/>
 		<result column="funpid" property="funPid" jdbcType="INTEGER"/>
@@ -44,14 +44,14 @@
 
 	
 	<!-- 级联查询结果集 -->
-	<resultMap id="CascadeResultMap" type="com.lhy.office.entity.Function">
+	<resultMap id="CascadeResultMap" type="Function">
 		<id column="funid" jdbcType="INTEGER" property="funId" />
 		<result column="funname" jdbcType="VARCHAR" property="funName" />
 		<result column="funpid" jdbcType="INTEGER" property="funPid" />
 		<result column="funurl" jdbcType="VARCHAR" property="funUrl" />
 		<result column="funstate" jdbcType="INTEGER" property="funState" />
 		<!-- 封装关联的父功能 -->
-		<association property="parentFunction" javaType="com.lhy.office.entity.Function">
+		<association property="parentFunction" javaType="Function">
 			<id column="parentFunid" property="funId"/>
 			<result column="parentFunname" property="funName"/>
 		</association>
@@ -74,17 +74,17 @@
 			tb_function.funpid = parent.funid
 	</sql>
 	
-	<select id="getFunctions" parameterType="com.lhy.office.entity.Function" resultMap="BaseResult">
+	<select id="getFunctions" parameterType="Function" resultMap="BaseResult">
 		<include refid="BaseSql"></include>
 		<include refid="BaseWhere"></include>
 	</select>
 	
-	<select id="selectByKeyWord" parameterType="com.lhy.office.entity.Function" resultMap="CascadeResultMap">
+	<select id="selectByKeyWord" parameterType="Function" resultMap="CascadeResultMap">
 		<include refid="CascadeSql"></include>
 		<include refid="BaseWhere"></include>
 	</select>
 	
-	<update id="updateFunction" parameterType="com.lhy.office.entity.Function">
+	<update id="updateFunction" parameterType="Function">
 		update tb_function 
 		<set>
 			<if test="funState!=null">
@@ -103,7 +103,7 @@
 		where funid =#{funId}
 	</update>
 	
-	<insert id="addFunction" parameterType="com.lhy.office.entity.Function" useGeneratedKeys="true" keyColumn="funid">
+	<insert id="addFunction" parameterType="Function" useGeneratedKeys="true" keyColumn="funid">
 		insert into tb_function
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="funName!=null">

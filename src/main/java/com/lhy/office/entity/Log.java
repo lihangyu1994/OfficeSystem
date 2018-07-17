@@ -3,22 +3,22 @@ package com.lhy.office.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Log implements Serializable{
+public class Log implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer logId;
-	
+
 	private String optName;
-	
+
 	private Integer bussinessId;
-	
+
 	private Integer operatorId;
-	
+
 	private String ipAddress;
-	
+
 	private Date optTime;
-	
+
 	private User operator;
 
 	public Integer getLogId() {
@@ -76,6 +76,5 @@ public class Log implements Serializable{
 	public void setOperator(User operator) {
 		this.operator = operator;
 	}
-	
-	
+
 }

@@ -14,15 +14,15 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  *
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-	 
-	public boolean preHandle(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		if(request.getSession().getAttribute("user")!=null) {
+
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if (request.getSession().getAttribute("user") != null) {
 			return true;
-		}else {
+		} else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("window.parent.location='"+request.getContextPath()+"'/login.jsp");
+			out.println("window.parent.location='" + request.getContextPath() + "'/login.jsp");
 			out.print("</script>");
 			return false;
 		}

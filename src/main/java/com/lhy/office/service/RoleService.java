@@ -16,6 +16,7 @@ public interface RoleService {
 	 * @return
 	 */
 	public Role queryFunctionByRoleId(Integer roleId);
+
 	/**
 	 * 查询角色
 	 * @param role
@@ -24,23 +25,26 @@ public interface RoleService {
 	 * @return
 	 */
 	public List<Role> getRoles(Role role);
+
 	/**
 	 * 修改角色信息
 	 * @param role
 	 */
 	public void updateRole(Role role);
+
 	/**
 	 * 删除角色拥有功能
 	 * @param roleId
 	 */
 	public void deleteRoleRight(Integer roleId);
+
 	/**
 	 * 修改角色拥有功能
 	 * @param roleId
 	 * @param funids
 	 */
-	public void updateRoleRight(Integer roleId,Integer funids[]);
-	
+	public void updateRoleRight(Integer roleId, Integer funids[]);
+
 	/**
 	 * 新增角色
 	 * @param role

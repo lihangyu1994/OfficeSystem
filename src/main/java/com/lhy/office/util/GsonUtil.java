@@ -71,15 +71,15 @@ public class GsonUtil {
 	 * @param <T>
 	 * @return
 	 */
-//	public static <T> List<T> jsonToList(String json, Class<T> cls) {
-//		Gson gson = new Gson();
-//		List<T> list = new ArrayList<T>();
-//		JsonArray array = new JsonParser().parse(json).getAsJsonArray();
-//		for (final JsonElement elem : array) {
-//			list.add(gson.fromJson(elem, cls));
-//		}
-//		return list;
-//	}
+	//	public static <T> List<T> jsonToList(String json, Class<T> cls) {
+	//		Gson gson = new Gson();
+	//		List<T> list = new ArrayList<T>();
+	//		JsonArray array = new JsonParser().parse(json).getAsJsonArray();
+	//		for (final JsonElement elem : array) {
+	//			list.add(gson.fromJson(elem, cls));
+	//		}
+	//		return list;
+	//	}
 
 	/**
 	 * 转成list中有map的
@@ -90,9 +90,8 @@ public class GsonUtil {
 	public static <T> List<Map<String, T>> GsonToListMaps(String gsonString) {
 		List<Map<String, T>> list = null;
 		if (gson != null) {
-			list = gson.fromJson(gsonString,
-					new TypeToken<List<Map<String, T>>>() {
-					}.getType());
+			list = gson.fromJson(gsonString, new TypeToken<List<Map<String, T>>>() {
+			}.getType());
 		}
 		return list;
 	}

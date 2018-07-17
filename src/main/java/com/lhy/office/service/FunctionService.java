@@ -10,24 +10,27 @@ import com.lhy.office.entity.Function;
  *
  */
 public interface FunctionService {
-	
+
 	/**
 	 * 查询功能列表
 	 * @param function
 	 * @return
 	 */
 	public List<Function> getFunctions(Function function);
+
 	/**
 	 * 
 	 * @param function
 	 * @return
 	 */
 	public List<Function> getFunctionList(Function function);
+
 	/**
 	 * 修改功能
 	 * @param function
 	 */
 	public void updateFunction(Function function);
+
 	/**
 	 * 新增功能
 	 * @param function

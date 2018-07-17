@@ -12,19 +12,20 @@ import com.lhy.office.entity.Log;
 import com.lhy.office.entity.User;
 import com.lhy.office.mapper.LogMapper;
 import com.lhy.office.service.LogService;
+
 @Service
 public class LogServiceImpl implements LogService {
 
 	@Autowired
 	private LogMapper logMapper;
-	
+
 	@Override
-	public PageInfo<Log> getLogsByKey(Log log,Integer pageNo,Integer pageCount) {
-		
+	public PageInfo<Log> getLogsByKey(Log log, Integer pageNo, Integer pageCount) {
+
 		PageHelper.startPage(pageNo, pageCount);
 		List<Log> logs = logMapper.getLogsByKey(log);
-		PageInfo<Log> page  = new PageInfo<Log>(logs,5);
-		return  page;
+		PageInfo<Log> page = new PageInfo<Log>(logs, 5);
+		return page;
 	}
 
 }

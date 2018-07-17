@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import com.lhy.office.entity.Role;
 import com.lhy.office.mapper.RoleMapper;
 import com.lhy.office.service.RoleService;
+
 @Service
 public class RoleServiceImpl implements RoleService {
 
 	@Autowired
 	private RoleMapper roleMapper;
-	
+
 	@Override
 	public Role queryFunctionByRoleId(Integer roleId) {
 		return roleMapper.queryFunctionByRoleId(roleId);
@@ -33,13 +34,13 @@ public class RoleServiceImpl implements RoleService {
 	public void deleteRoleRight(Integer roleId) {
 		roleMapper.deleteRoleRight(roleId);
 	}
-	
+
 	@Override
-	public void updateRoleRight(Integer roleId,Integer funids[]) {
+	public void updateRoleRight(Integer roleId, Integer funids[]) {
 		// 先删除原始角色原始权限
 		roleMapper.deleteRoleRight(roleId);
 		// 循环加入新的权限
-		for(int i=0;i<funids.length;i++) {
+		for (int i = 0; i < funids.length; i++) {
 			roleMapper.addRoleRight(roleId, funids[i]);
 		}
 	}

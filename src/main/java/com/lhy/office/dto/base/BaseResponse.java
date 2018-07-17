@@ -1,13 +1,14 @@
 package com.lhy.office.dto.base;
 
 import java.io.Serializable;
+
 /**
  * 请求基类
  * @author Administrator
  *
  */
-public class BaseResponse implements Serializable{
-	
+public class BaseResponse implements Serializable {
+
 	private long firstResult;
 
 	// 初始值  每页显示默认10条记录

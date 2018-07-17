@@ -1,26 +1,25 @@
 package com.lhy.office.entity;
 
-
 /**
  * 组织机构
  * @author Administrator
  *
  */
 public class Institution {
-	
+
 	private Integer instId;
-	
+
 	private Integer mergedinstId;
-	
+
 	private String instName;
-	
+
 	private String instAddr;
-	
+
 	private String postCode;
-	
+
 	private Integer instState;
-	
-   private Institution mergedInstitution;
+
+	private Institution mergedInstitution;
 
 	public Integer getInstId() {
 		return instId;

@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import com.lhy.office.entity.User;
 import com.lhy.office.mapper.UserMapper;
 import com.lhy.office.service.UserService;
+
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	private UserMapper userMapper;
 
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void add(User user) {
-			userMapper.add(user);
+		userMapper.add(user);
 	}
-	
+
 }

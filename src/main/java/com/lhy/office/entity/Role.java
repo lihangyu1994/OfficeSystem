@@ -2,7 +2,7 @@ package com.lhy.office.entity;
 
 import java.util.List;
 
-public class Role { 
+public class Role {
 
 	/**角色id*/
 	private Integer roleId;
@@ -54,6 +54,5 @@ public class Role {
 	public void setFunctionList(List<Function> functionList) {
 		this.functionList = functionList;
 	}
-	
-	
+
 }

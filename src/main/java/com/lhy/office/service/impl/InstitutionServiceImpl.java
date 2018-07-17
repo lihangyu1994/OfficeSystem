@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import com.lhy.office.entity.Institution;
 import com.lhy.office.mapper.InstitutionMapper;
 import com.lhy.office.service.InstitutionService;
+
 @Service
 public class InstitutionServiceImpl implements InstitutionService {
-	
+
 	@Autowired
 	private InstitutionMapper Institution;
 

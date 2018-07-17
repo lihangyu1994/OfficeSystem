@@ -7,7 +7,7 @@ public class User {
 	private String loginName;
 
 	private String password;
-	
+
 	private String userTrueName;
 
 	private String job;
@@ -21,9 +21,9 @@ public class User {
 	private Integer roleId;
 
 	private Integer userState;
-	
+
 	private Institution institution;
-	
+
 	private Role role;
 
 	public Integer getUserId() {
@@ -121,8 +121,5 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-
-	
 
 }
